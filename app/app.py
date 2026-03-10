@@ -1,7 +1,7 @@
 import random
 import string
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
 
 app = Flask(__name__)
 
@@ -159,6 +159,45 @@ def select_symbol(s):
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/privacidade")
+def privacy():
+    return render_template("privacy.html")
+
+
+@app.route("/termos")
+def terms():
+    return render_template("terms.html")
+
+
+@app.route("/robots.txt")
+def robots():
+    content = "User-agent: *\nAllow: /\nSitemap: https://oxepass.com/sitemap.xml\n"
+    return Response(content, mimetype="text/plain")
+
+
+@app.route("/sitemap.xml")
+def sitemap():
+    content = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://oxepass.com/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://oxepass.com/privacidade</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://oxepass.com/termos</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>"""
+    return Response(content, mimetype="application/xml")
 
 
 @app.route("/generate", methods=["POST"])

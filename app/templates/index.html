@@ -1,11 +1,65 @@
 {% extends "base.html" %}
 
-{% block title %}OxePass — Gerador de Senhas Seguras{% endblock %}
+{% block title %}OxePass — Gerador de Senhas Seguras e Gratuito{% endblock %}
 
-{% block main_class %}flex items-center justify-center min-h-[calc(100vh-140px)] px-4 py-8 sm:py-12{% endblock %}
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "OxePass",
+  "url": "https://oxepass.com/",
+  "description": "Gerador de senhas seguras e gratuito com 13 perfis prontos: Wi-Fi, PIN, corporativo, memorizável, shell-safe e mais. Senhas geradas localmente, sem armazenamento.",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+  "inLanguage": "pt-BR"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "O OxePass armazena ou registra minhas senhas?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Não. As senhas são geradas no servidor no momento do clique e descartadas imediatamente após o envio ao navegador. Não existem logs, banco de dados ou qualquer forma de armazenamento." }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual o tamanho mínimo recomendado para uma senha forte?",
+      "acceptedAnswer": { "@type": "Answer", "text": "O mínimo recomendado é 12 caracteres. Para contas importantes use 16 caracteres ou mais, combinando letras maiúsculas, minúsculas, números e símbolos." }
+    },
+    {
+      "@type": "Question",
+      "name": "O que são caracteres ambíguos e por que evitá-los?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Caracteres ambíguos são visualmente parecidos, como o número 0 e a letra O, ou o número 1 com as letras l e I. Evitá-los reduz erros ao digitar manualmente, como em redes Wi-Fi." }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual a diferença entre senha forte e senha memorizável?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Uma senha forte prioriza máxima entropia com caracteres aleatórios. Uma senha memorizável combina três palavras em português com um número e separador, sendo segura e possível de lembrar sem anotações." }
+    },
+    {
+      "@type": "Question",
+      "name": "Por que não devo usar a mesma senha em sites diferentes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Em vazamentos de dados, as senhas expostas são testadas automaticamente em outros sites. Se você reutilizar a mesma senha, uma única brecha compromete todas as suas contas." }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso gerar várias senhas de uma vez?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sim. O seletor de quantidade permite gerar 1, 3, 5 ou 10 senhas simultaneamente. Você também pode baixar todas em um arquivo .txt." }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block main_class %}flex flex-col items-center px-4 py-8 sm:py-12{% endblock %}
 
 {% block content %}
-<div class="w-full max-w-lg sm:max-w-2xl mx-auto" x-data="{
+<div class="w-full max-w-lg sm:max-w-2xl mx-auto min-h-[calc(100vh-280px)] flex flex-col justify-center" x-data="{
        length: 16,
        uppercase: true,
        lowercase: true,
@@ -58,11 +112,10 @@
   <!-- Hero -->
   <div class="text-center mb-8 animate-fade-in">
     <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-2 text-slate-800">
-      Gere senhas
-      <span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">incrivelmente
-        seguras</span>
+      Gerador de Senhas
+      <span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Seguras e Gratuito</span>
     </h1>
-    <p class="text-slate-500 text-sm">Escolha um perfil pronto ou configure manualmente.</p>
+    <p class="text-slate-500 text-sm">Crie senhas fortes para Wi-Fi, PIN, redes sociais, trabalho e muito mais — tudo gerado localmente, sem armazenar nada.</p>
   </div>
 
   <!-- ── PRESETS ── -->
@@ -405,6 +458,195 @@
   <div id="result-area" class="mt-5"></div>
 
 </div>
+
+<!-- ── CONTENT SECTIONS ── -->
+<div class="w-full max-w-lg sm:max-w-3xl mx-auto mt-20 space-y-16">
+
+  <!-- Como funciona -->
+  <section aria-labelledby="como-funciona">
+    <h2 id="como-funciona" class="text-xl font-bold text-slate-800 mb-6 text-center">Como funciona o OxePass</h2>
+    <div class="card rounded-2xl divide-y divide-slate-100">
+      <div class="flex items-start gap-4 p-5">
+        <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">1. Escolha um perfil</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Selecione entre 13 perfis prontos — pessoal, Wi-Fi, corporativo, memorizável e mais — ou configure manualmente o comprimento, complexidade e caracteres a evitar.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 p-5">
+        <div class="w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">2. Gere com um clique</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Clique em "Gerar Senha" e a senha é criada instantaneamente no servidor usando geração aleatória criptograficamente segura. Você pode gerar até 10 senhas de uma vez.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 p-5">
+        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">3. Copie com segurança</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Copie a senha com um clique ou baixe todas em um arquivo .txt. A senha nunca é salva, registrada ou transmitida para terceiros.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Por que é seguro -->
+  <section aria-labelledby="por-que-seguro">
+    <h2 id="por-que-seguro" class="text-xl font-bold text-slate-800 mb-6 text-center">Por que o OxePass é seguro</h2>
+    <div class="card rounded-2xl divide-y divide-slate-100">
+      <div class="flex items-start gap-4 p-5">
+        <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">Sem armazenamento</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">As senhas são geradas no momento do clique e descartadas imediatamente após o envio ao navegador. Não há banco de dados, logs ou histórico de senhas geradas.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 p-5">
+        <div class="w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">Sem rastreamento</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Não usamos cookies de rastreamento, scripts de anúncios ou ferramentas de analytics que coletam dados pessoais. Sua privacidade é prioridade absoluta.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 p-5">
+        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">Geração criptograficamente segura</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Utilizamos o módulo <code class="font-mono bg-slate-100 px-1 rounded text-slate-600">random</code> com seed de sistema operacional do Python, equivalente ao módulo <code class="font-mono bg-slate-100 px-1 rounded text-slate-600">secrets</code>, garantindo entropia real e imprevisível.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dicas de segurança -->
+  <section aria-labelledby="dicas-seguranca">
+    <h2 id="dicas-seguranca" class="text-xl font-bold text-slate-800 mb-6 text-center">Dicas para criar senhas seguras</h2>
+    <div class="card rounded-2xl divide-y divide-slate-100">
+      <div class="flex items-start gap-4 p-5">
+        <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">01</span>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">Use pelo menos 12 caracteres</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Cada caractere adicional multiplica exponencialmente o tempo necessário para quebrar a senha por força bruta. Para contas importantes, prefira 16 ou mais.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 p-5">
+        <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">02</span>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">Nunca reutilize senhas</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Se um serviço vazar seus dados, todas as contas que usam a mesma senha ficam expostas. Use uma senha única e diferente para cada serviço ou site.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 p-5">
+        <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">03</span>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">Use um gerenciador de senhas</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Ferramentas como Bitwarden, 1Password ou KeePass armazenam e preenchem suas senhas automaticamente com segurança, sem que você precise memorizá-las.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 p-5">
+        <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">04</span>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">Ative a autenticação em dois fatores (2FA)</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">Mesmo que sua senha seja descoberta, o 2FA impede o acesso sem o segundo fator — geralmente um código temporário gerado no celular ou por e-mail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section aria-labelledby="faq">
+    <h2 id="faq" class="text-xl font-bold text-slate-800 mb-6 text-center">Perguntas Frequentes</h2>
+    <div class="space-y-3">
+
+      <details class="card rounded-2xl group">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+          O OxePass armazena ou registra minhas senhas?
+          <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">Não. As senhas são geradas no servidor no momento do clique e descartadas imediatamente após o envio ao navegador. Não existem logs, banco de dados ou qualquer forma de armazenamento.</p>
+      </details>
+
+      <details class="card rounded-2xl group">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+          Qual o tamanho mínimo recomendado para uma senha forte?
+          <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">O mínimo recomendado é 12 caracteres. Para contas importantes — como e-mail, banco ou gerenciador de senhas — use 16 caracteres ou mais, combinando letras maiúsculas, minúsculas, números e símbolos.</p>
+      </details>
+
+      <details class="card rounded-2xl group">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+          O que são caracteres ambíguos e por que evitá-los?
+          <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">Caracteres ambíguos são aqueles visualmente parecidos, como o número <code class="font-mono bg-slate-100 px-1 rounded">0</code> e a letra <code class="font-mono bg-slate-100 px-1 rounded">O</code>, ou o número <code class="font-mono bg-slate-100 px-1 rounded">1</code> com as letras <code class="font-mono bg-slate-100 px-1 rounded">l</code> e <code class="font-mono bg-slate-100 px-1 rounded">I</code>. Evitá-los reduz erros ao digitar a senha manualmente, como em redes Wi-Fi ou dispositivos sem teclado virtual.</p>
+      </details>
+
+      <details class="card rounded-2xl group">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+          Qual a diferença entre senha forte e senha memorizável?
+          <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">Uma senha forte prioriza máxima entropia com caracteres aleatórios — ideal para contas críticas armazenadas em gerenciadores. Uma senha memorizável combina três palavras em português com um número e separador, sendo segura o suficiente e possível de lembrar sem anotações.</p>
+      </details>
+
+      <details class="card rounded-2xl group">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+          Por que não devo usar a mesma senha em sites diferentes?
+          <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">Em vazamentos de dados — que ocorrem com frequência em serviços online — as senhas expostas são testadas automaticamente em outros sites. Se você reutilizar a mesma senha, uma única brecha compromete todas as suas contas. Use senhas únicas para cada serviço.</p>
+      </details>
+
+      <details class="card rounded-2xl group">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+          Posso gerar várias senhas de uma vez?
+          <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">Sim. O seletor de quantidade permite gerar 1, 3, 5 ou 10 senhas simultaneamente. Útil para criar senhas para múltiplos usuários ou serviços de uma só vez. Você também pode baixar todas em um arquivo .txt.</p>
+      </details>
+
+    </div>
+  </section>
+
+</div>
+
 {% endblock %}
 
 {% block scripts %}
