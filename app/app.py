@@ -38,8 +38,10 @@ _WORDS = [
 ]
 # fmt: on
 
-# Chars that look alike — removed in "child" mode
+# Chars that look alike — removed in "child" and "wifi" modes
 _AMBIGUOUS = set("0Oo1lIi")
+# Extended set for Wi-Fi: also removes digits/letters easily confused across cases
+_WIFI_AMBIGUOUS = _AMBIGUOUS | set("S5B8Z2")
 
 
 def generate_memorable() -> tuple[str, list[str]]:
@@ -65,12 +67,19 @@ def generate_password(
     use_symbols: bool,
     exclude: str = "",
     child_mode: bool = False,
+    wifi_mode: bool = False,
 ) -> str:
     symbols_chars = "!@#$%^&*()_+-=[]{}|;:,.<>?"
     charset = ""
     required = []
 
-    blocked = set(exclude) | (_AMBIGUOUS if child_mode else set())
+    if child_mode:
+        ambiguous = _AMBIGUOUS
+    elif wifi_mode:
+        ambiguous = _WIFI_AMBIGUOUS
+    else:
+        ambiguous = set()
+    blocked = set(exclude) | ambiguous
 
     def clean(s: str) -> str:
         return "".join(c for c in s if c not in blocked)
@@ -195,12 +204,14 @@ def generate():
             use_lower = request.form.get("lowercase") == "true"
             use_nums = request.form.get("numbers") == "true"
             use_syms = request.form.get("symbols") == "true"
-            child = pw_type == "child"
+            child   = pw_type == "child"
+            elderly = pw_type == "elderly"
+            wifi    = pw_type == "wifi"
 
             if not any([use_upper, use_lower, use_nums, use_syms]):
                 use_lower = True
 
-            pwd = generate_password(length, use_upper, use_lower, use_nums, use_syms, exclude=exclude, child_mode=child)
+            pwd = generate_password(length, use_upper, use_lower, use_nums, use_syms, exclude=exclude, child_mode=child or elderly, wifi_mode=wifi)
             entries.append({"password": pwd, "parts": None})
 
     strength = password_strength(entries[0]["password"])
