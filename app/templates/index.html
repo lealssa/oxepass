@@ -33,21 +33,25 @@
          this.lowercase = preset.lowercase;
          this.numbers   = preset.numbers;
          this.symbols   = preset.symbols;
+         this.exclude   = '';
          this.$nextTick(() => { this.syncSlider(); htmx.trigger('#generate-btn', 'click'); });
        },
        get showControls() { return this.pwType !== 'memorable' && this.pwType !== 'backup' },
        get showExclude()  { return this.showControls },
        presets: [
-         { id:'personal',   label:'Pessoal',     desc:'uso diário',        length:16, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'user',     color:'indigo',  type:'random' },
-         { id:'corporate',  label:'Corporativo', desc:'política de TI',    length:12, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'building', color:'slate',   type:'random' },
-         { id:'apikey',     label:'API Key',     desc:'integrações',       length:32, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'code',     color:'violet',  type:'random' },
-         { id:'wifi',       label:'Wi-Fi',       desc:'redes domésticas',  length:20, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'wifi',     color:'sky',     type:'random' },
-         { id:'pin',        label:'PIN',         desc:'desbloqueio',       length:6,  uppercase:false, lowercase:false, numbers:true,  symbols:false, icon:'pin',      color:'amber',   type:'random' },
-         { id:'master',     label:'Master',      desc:'cofre de senhas',   length:24, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'shield',   color:'emerald', type:'random' },
-         { id:'token',      label:'Token',       desc:'acesso a APIs',     length:48, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'key',      color:'violet',  type:'random' },
-         { id:'child',      label:'Criança',     desc:'fácil de digitar',  length:8,  uppercase:false, lowercase:true,  numbers:true,  symbols:false, icon:'star',     color:'pink',    type:'child'  },
-         { id:'backup',     label:'Backup',      desc:'recuperação',       length:0,  uppercase:false, lowercase:false, numbers:true,  symbols:false, icon:'refresh',  color:'teal',    type:'backup' },
-         { id:'memorable',  label:'Memorizável', desc:'fácil de lembrar',  length:0,  uppercase:false, lowercase:false, numbers:false, symbols:false, icon:'brain',    color:'rose',    type:'memorable' }
+         { id:'personal',   label:'Pessoal',     desc:'uso diário',        length:16, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'user',     color:'indigo',  type:'random'    },
+         { id:'wifi',       label:'Wi-Fi',       desc:'redes domésticas',  length:20, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'wifi',     color:'sky',     type:'random'    },
+         { id:'memorable',  label:'Memorizável', desc:'fácil de lembrar',  length:0,  uppercase:false, lowercase:false, numbers:false, symbols:false, icon:'brain',    color:'rose',    type:'memorable' },
+         { id:'pin',        label:'PIN',         desc:'desbloqueio',       length:6,  uppercase:false, lowercase:false, numbers:true,  symbols:false, icon:'pin',      color:'amber',   type:'random'    },
+         { id:'child',      label:'Criança',     desc:'fácil de digitar',  length:8,  uppercase:false, lowercase:true,  numbers:true,  symbols:false, icon:'star',     color:'pink',    type:'child'     },
+         { id:'backup',     label:'Backup',      desc:'recuperação',       length:0,  uppercase:false, lowercase:false, numbers:true,  symbols:false, icon:'refresh',  color:'teal',    type:'backup'    },
+         { id:'corporate',  label:'Corporativo', desc:'política de TI',    length:12, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'building', color:'slate',   type:'random'    },
+         { id:'master',     label:'Master',      desc:'cofre de senhas',   length:24, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'shield',   color:'emerald', type:'random'    },
+         { id:'legacy',     label:'Legado',      desc:'sistemas antigos',  length:12, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'archive',  color:'slate',   type:'random'    },
+         { id:'apikey',     label:'API Key',     desc:'integrações',       length:32, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'code',     color:'violet',  type:'random'    },
+         { id:'token',      label:'Token',       desc:'acesso a APIs',     length:48, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'key',      color:'violet',  type:'random'    },
+         { id:'shell',      label:'Shell-safe',  desc:'terminais bash',    length:20, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'terminal', color:'orange',  type:'shell'     },
+         { id:'url',        label:'URL-safe',    desc:'configs e variáveis',length:20, uppercase:true, lowercase:true,  numbers:true,  symbols:true,  icon:'link',     color:'cyan',    type:'url'       }
        ]
      }" x-init="$nextTick(() => syncSlider())">
 
@@ -76,6 +80,8 @@
             'ring-2 ring-pink-400    bg-pink-50    border-pink-300':    p.color==='pink'    && activePreset===p.id,
             'ring-2 ring-teal-400    bg-teal-50    border-teal-300':    p.color==='teal'    && activePreset===p.id,
             'ring-2 ring-rose-400    bg-rose-50    border-rose-300':    p.color==='rose'    && activePreset===p.id,
+            'ring-2 ring-orange-400  bg-orange-50  border-orange-300':  p.color==='orange'  && activePreset===p.id,
+            'ring-2 ring-cyan-400    bg-cyan-50    border-cyan-300':    p.color==='cyan'    && activePreset===p.id,
             'bg-white border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/50': activePreset!==p.id
           }"
           class="relative flex flex-col items-center gap-1.5 p-2.5 rounded-xl border transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md">
@@ -90,6 +96,8 @@
             'bg-pink-100    text-pink-600':    p.color==='pink',
             'bg-teal-100    text-teal-600':    p.color==='teal',
             'bg-rose-100    text-rose-600':    p.color==='rose',
+            'bg-orange-100  text-orange-600':  p.color==='orange',
+            'bg-cyan-100    text-cyan-600':    p.color==='cyan',
           }" class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all">
             <template x-if="p.icon==='user'"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -135,6 +143,21 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
               </svg></template>
+            <template x-if="p.icon==='terminal'"><svg class="w-4 h-4" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg></template>
+            <template x-if="p.icon==='link'"><svg class="w-4 h-4" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+              </svg></template>
+            <template x-if="p.icon==='archive'"><svg class="w-4 h-4" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+              </svg></template>
           </div>
 
           <div class="text-center">
@@ -143,7 +166,7 @@
           </div>
 
           <div x-show="activePreset===p.id" class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full"
-            :class="{'bg-indigo-500':p.color==='indigo','bg-slate-500':p.color==='slate','bg-violet-500':p.color==='violet','bg-sky-500':p.color==='sky','bg-amber-500':p.color==='amber','bg-emerald-500':p.color==='emerald','bg-pink-500':p.color==='pink','bg-teal-500':p.color==='teal','bg-rose-500':p.color==='rose'}">
+            :class="{'bg-indigo-500':p.color==='indigo','bg-slate-500':p.color==='slate','bg-violet-500':p.color==='violet','bg-sky-500':p.color==='sky','bg-amber-500':p.color==='amber','bg-emerald-500':p.color==='emerald','bg-pink-500':p.color==='pink','bg-teal-500':p.color==='teal','bg-rose-500':p.color==='rose','bg-orange-500':p.color==='orange','bg-cyan-500':p.color==='cyan'}">
           </div>
         </button>
       </template>

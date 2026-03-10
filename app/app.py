@@ -169,6 +169,26 @@ def generate():
             pwd = generate_backup_code()
             entries.append({"password": pwd, "parts": None})
 
+        elif pw_type == "shell":
+            # Shell-safe: symbols without bash metacharacters; keeps @ _ + - = : , .
+            length = max(4, min(64, int(request.form.get("length", 20))))
+            use_upper = request.form.get("uppercase") == "true"
+            use_lower = request.form.get("lowercase") == "true"
+            use_nums = request.form.get("numbers") == "true"
+            shell_exclude = exclude + "!#$%^&*()[]{}|;<>?"
+            pwd = generate_password(length, use_upper, use_lower, use_nums, True, exclude=shell_exclude)
+            entries.append({"password": pwd, "parts": None})
+
+        elif pw_type == "url":
+            # URL-safe: symbols limited to - _ . (RFC 3986 unreserved)
+            length = max(4, min(64, int(request.form.get("length", 20))))
+            use_upper = request.form.get("uppercase") == "true"
+            use_lower = request.form.get("lowercase") == "true"
+            use_nums = request.form.get("numbers") == "true"
+            url_exclude = exclude + "!@#$%^&*()+=[]{}|;:,<>?"
+            pwd = generate_password(length, use_upper, use_lower, use_nums, True, exclude=url_exclude)
+            entries.append({"password": pwd, "parts": None})
+
         else:
             length = max(4, min(64, int(request.form.get("length", 16))))
             use_upper = request.form.get("uppercase") == "true"
