@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}Metodologia de Força da Senha — OxePass{% endblock %}
+
+{% block main_class %}px-4 py-10 sm:py-16{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-2xl mx-auto space-y-10">
+
+  <div class="text-center">
+    <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white mb-2">Como Medimos a Força da Senha</h1>
+    <p class="text-sm text-slate-400">Metodologia por trás do score de força e tempo para quebrar</p>
+  </div>
+
+  <div class="card rounded-2xl p-6 sm:p-8 space-y-8 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">1. Estimativa baseada em entropia</h2>
+      <p>O OxePass gera senhas usando o módulo <strong class="text-slate-700 dark:text-slate-200">secrets</strong> do Python — um gerador de números aleatórios criptograficamente seguro. Como controlamos a geração e garantimos aleatoriedade real, usamos <strong class="text-slate-700 dark:text-slate-200">entropia de informação</strong> para medir a força.</p>
+      <p>Entropia quantifica o quão imprevisível uma senha é. A fórmula é:</p>
+      <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-600 rounded-xl p-4 text-center">
+        <p class="font-mono text-base text-slate-700 dark:text-slate-200">E = L × log₂(P)</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Onde <strong>L</strong> = comprimento da senha e <strong>P</strong> = tamanho do pool de caracteres</p>
+      </div>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">2. Pool de caracteres</h2>
+      <p>O tamanho do pool depende de quais tipos de caracteres estão presentes na senha:</p>
+      <div class="space-y-2">
+        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/50 rounded-lg px-4 py-2">
+          <span class="font-medium text-slate-700 dark:text-slate-200">Minúsculas <span class="font-mono text-slate-400">(a–z)</span></span>
+          <span class="font-mono font-bold text-indigo-600 dark:text-indigo-400">26</span>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/50 rounded-lg px-4 py-2">
+          <span class="font-medium text-slate-700 dark:text-slate-200">Maiúsculas <span class="font-mono text-slate-400">(A–Z)</span></span>
+          <span class="font-mono font-bold text-indigo-600 dark:text-indigo-400">26</span>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/50 rounded-lg px-4 py-2">
+          <span class="font-medium text-slate-700 dark:text-slate-200">Dígitos <span class="font-mono text-slate-400">(0–9)</span></span>
+          <span class="font-mono font-bold text-indigo-600 dark:text-indigo-400">10</span>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/50 rounded-lg px-4 py-2">
+          <span class="font-medium text-slate-700 dark:text-slate-200">Símbolos <span class="font-mono text-slate-400">(!@#$%...)</span></span>
+          <span class="font-mono font-bold text-indigo-600 dark:text-indigo-400">32</span>
+        </div>
+      </div>
+      <p>Por exemplo, uma senha com minúsculas + maiúsculas + dígitos + símbolos tem um pool de <strong class="text-slate-700 dark:text-slate-200">94 caracteres</strong>. Uma senha de 16 caracteres com esse pool tem <strong class="text-slate-700 dark:text-slate-200">104,8 bits</strong> de entropia.</p>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">3. Cenário de ataque</h2>
+      <p>Para calcular o tempo de quebra, simulamos o cenário mais agressivo realista:</p>
+      <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-600 rounded-xl p-4 space-y-2">
+        <p class="font-semibold text-slate-700 dark:text-slate-200">Offline fast hashing — 10 bilhões de tentativas/segundo</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Simula um cluster de GPUs modernas realizando ataque de força bruta contra hashes roubados usando algoritmos como MD5 ou SHA-1 (sem salt). Este é o pior cenário para o usuário.</p>
+      </div>
+      <p>O tempo estimado representa quanto um atacante com este equipamento levaria, <strong class="text-slate-700 dark:text-slate-200">em média</strong>, para encontrar a senha — ou seja, 50% do espaço total de busca:</p>
+      <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-600 rounded-xl p-4 text-center">
+        <p class="font-mono text-base text-slate-700 dark:text-slate-200">T = 2<sup>E</sup> ÷ (2 × 10¹⁰)</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Onde <strong>E</strong> = entropia em bits e <strong>10¹⁰</strong> = tentativas por segundo</p>
+      </div>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">4. Score de força</h2>
+      <p>O score é derivado diretamente do tempo de quebra, para que sejam sempre consistentes:</p>
+      <div class="space-y-2">
+        <div class="flex items-center gap-3">
+          <span class="w-24 text-xs font-bold text-red-500">Muito Fraca</span>
+          <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"><div class="h-full w-1/5 bg-red-400 rounded-full"></div></div>
+          <span class="text-xs text-slate-400 w-28 text-right">&lt; 10 minutos</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-24 text-xs font-bold text-orange-500">Fraca</span>
+          <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"><div class="h-full w-2/5 bg-orange-400 rounded-full"></div></div>
+          <span class="text-xs text-slate-400 w-28 text-right">&lt; 1 dia</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-24 text-xs font-bold text-yellow-600">Moderada</span>
+          <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"><div class="h-full w-3/5 bg-yellow-400 rounded-full"></div></div>
+          <span class="text-xs text-slate-400 w-28 text-right">&lt; 1 ano</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-24 text-xs font-bold text-lime-600">Forte</span>
+          <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"><div class="h-full w-4/5 bg-lime-500 rounded-full"></div></div>
+          <span class="text-xs text-slate-400 w-28 text-right">&lt; 1.000 anos</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-24 text-xs font-bold text-emerald-600">Muito Forte</span>
+          <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"><div class="h-full w-full bg-emerald-500 rounded-full"></div></div>
+          <span class="text-xs text-slate-400 w-28 text-right">≥ 1.000 anos</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">5. Por que entropia funciona para senhas geradas</h2>
+      <p>Existem dois cenários diferentes para medir a força de uma senha:</p>
+      <div class="space-y-3 pl-1">
+        <div>
+          <p class="font-semibold text-slate-700 dark:text-slate-200">Senhas escolhidas por humanos</p>
+          <p class="text-slate-500 dark:text-slate-400 mt-1">Pessoas tendem a usar palavras de dicionário, datas, padrões de teclado e substituições previsíveis. Ferramentas como <em>zxcvbn</em> são projetadas para esse caso, decompondo a senha na combinação mais barata de padrões conhecidos.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-700 dark:text-slate-200">Senhas geradas por máquina</p>
+          <p class="text-slate-500 dark:text-slate-400 mt-1">Quando geradas com um gerador criptográfico como o módulo <code class="text-xs bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded">secrets</code> do Python, cada caractere é independente e uniformemente aleatório. Não há padrões a explorar, então entropia é a medida exata de dificuldade.</p>
+        </div>
+      </div>
+      <p>Como o OxePass gera todas as senhas com <code class="text-xs bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded">secrets</code>, a única opção do atacante é força bruta sobre o pool completo. Isso é exatamente o que a fórmula de entropia calcula.</p>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">6. Exemplo prático</h2>
+      <p>Uma senha do perfil <strong class="text-slate-700 dark:text-slate-200">Pessoal</strong> (16 caracteres, todos os tipos):</p>
+      <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-600 rounded-xl p-4 space-y-1 font-mono text-xs">
+        <p><span class="text-slate-400">Pool:</span> <span class="text-slate-700 dark:text-slate-200">26 + 26 + 10 + 32 = 94</span></p>
+        <p><span class="text-slate-400">Entropia:</span> <span class="text-slate-700 dark:text-slate-200">16 × log₂(94) = 104,8 bits</span></p>
+        <p><span class="text-slate-400">Espaço de busca:</span> <span class="text-slate-700 dark:text-slate-200">2¹⁰⁴·⁸ ≈ 2,04 × 10³¹ combinações</span></p>
+        <p><span class="text-slate-400">Tempo médio:</span> <span class="text-slate-700 dark:text-slate-200">~1,02 × 10²¹ segundos ≈ 32 trilhões de anos</span></p>
+      </div>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">7. Ressalvas importantes</h2>
+      <div class="space-y-3 pl-1">
+        <div>
+          <p class="font-semibold text-slate-700 dark:text-slate-200">O tempo de quebra é uma estimativa</p>
+          <p class="text-slate-500 dark:text-slate-400 mt-1">O tempo real depende do algoritmo de hash usado pelo serviço. Por exemplo, bcrypt é muito mais lento que MD5, reduzindo a taxa de ataque para milhares por segundo.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-700 dark:text-slate-200">Válido apenas para senhas geradas aleatoriamente</p>
+          <p class="text-slate-500 dark:text-slate-400 mt-1">Se você digitar sua própria senha, padrões e palavras de dicionário podem reduzir drasticamente a entropia real.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-700 dark:text-slate-200">Senha forte não substitui 2FA</p>
+          <p class="text-slate-500 dark:text-slate-400 mt-1">Ative a autenticação em dois fatores sempre que possível. Mesmo a senha mais forte pode ser comprometida por phishing ou vazamento.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="text-center">
+    <a href="/pt/" class="inline-flex items-center gap-2 text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      {{ _('Voltar ao gerador') }}
+    </a>
+  </div>
+
+</div>
+{% endblock %}

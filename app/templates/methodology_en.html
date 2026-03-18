@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}Password Strength Methodology — OxePass{% endblock %}
+
+{% block main_class %}px-4 py-10 sm:py-16{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-2xl mx-auto space-y-10">
+
+  <div class="text-center">
+    <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white mb-2">How We Measure Password Strength</h1>
+    <p class="text-sm text-slate-400">Methodology behind the strength score and crack time</p>
+  </div>
+
+  <div class="card rounded-2xl p-6 sm:p-8 space-y-8 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">1. Entropy-based estimation</h2>
+      <p>OxePass generates passwords using Python's <strong class="text-slate-700 dark:text-slate-200">secrets</strong> module — a cryptographically secure random number generator. Because we control the generation and can guarantee true randomness, we use <strong class="text-slate-700 dark:text-slate-200">information entropy</strong> to measure strength.</p>
+      <p>Entropy quantifies how unpredictable a password is. The formula is:</p>
+      <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-600 rounded-xl p-4 text-center">
+        <p class="font-mono text-base text-slate-700 dark:text-slate-200">E = L × log₂(P)</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Where <strong>L</strong> = password length and <strong>P</strong> = size of the character pool</p>
+      </div>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">2. Character pool</h2>
+      <p>The pool size depends on which character types are present in the password:</p>
+      <div class="space-y-2">
+        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/50 rounded-lg px-4 py-2">
+          <span class="font-medium text-slate-700 dark:text-slate-200">Lowercase <span class="font-mono text-slate-400">(a–z)</span></span>
+          <span class="font-mono font-bold text-indigo-600 dark:text-indigo-400">26</span>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/50 rounded-lg px-4 py-2">
+          <span class="font-medium text-slate-700 dark:text-slate-200">Uppercase <span class="font-mono text-slate-400">(A–Z)</span></span>
+          <span class="font-mono font-bold text-indigo-600 dark:text-indigo-400">26</span>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/50 rounded-lg px-4 py-2">
+          <span class="font-medium text-slate-700 dark:text-slate-200">Digits <span class="font-mono text-slate-400">(0–9)</span></span>
+          <span class="font-mono font-bold text-indigo-600 dark:text-indigo-400">10</span>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/50 rounded-lg px-4 py-2">
+          <span class="font-medium text-slate-700 dark:text-slate-200">Symbols <span class="font-mono text-slate-400">(!@#$%...)</span></span>
+          <span class="font-mono font-bold text-indigo-600 dark:text-indigo-400">32</span>
+        </div>
+      </div>
+      <p>For example, a password with lowercase + uppercase + digits + symbols has a pool of <strong class="text-slate-700 dark:text-slate-200">94 characters</strong>. A 16-character password with this pool has <strong class="text-slate-700 dark:text-slate-200">104.8 bits</strong> of entropy.</p>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">3. Attack scenario</h2>
+      <p>To calculate crack time, we simulate the most aggressive realistic scenario:</p>
+      <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-600 rounded-xl p-4 space-y-2">
+        <p class="font-semibold text-slate-700 dark:text-slate-200">Offline fast hashing — 10 billion attempts/second</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Simulates a cluster of modern GPUs performing a brute force attack against stolen hashes using algorithms like MD5 or SHA-1 (without salting). This is the worst-case scenario for the user.</p>
+      </div>
+      <p>The estimated time represents how long an attacker with this equipment would take, <strong class="text-slate-700 dark:text-slate-200">on average</strong>, to find the password — that is, 50% of the total search space:</p>
+      <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-600 rounded-xl p-4 text-center">
+        <p class="font-mono text-base text-slate-700 dark:text-slate-200">T = 2<sup>E</sup> ÷ (2 × 10¹⁰)</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Where <strong>E</strong> = entropy in bits and <strong>10¹⁰</strong> = guesses per second</p>
+      </div>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">4. Strength score</h2>
+      <p>The score is derived directly from the crack time, so they are always consistent:</p>
+      <div class="space-y-2">
+        <div class="flex items-center gap-3">
+          <span class="w-20 text-xs font-bold text-red-500">Very Weak</span>
+          <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"><div class="h-full w-1/5 bg-red-400 rounded-full"></div></div>
+          <span class="text-xs text-slate-400 w-28 text-right">&lt; 10 minutes</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-20 text-xs font-bold text-orange-500">Weak</span>
+          <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"><div class="h-full w-2/5 bg-orange-400 rounded-full"></div></div>
+          <span class="text-xs text-slate-400 w-28 text-right">&lt; 1 day</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-20 text-xs font-bold text-yellow-600">Moderate</span>
+          <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"><div class="h-full w-3/5 bg-yellow-400 rounded-full"></div></div>
+          <span class="text-xs text-slate-400 w-28 text-right">&lt; 1 year</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-20 text-xs font-bold text-lime-600">Strong</span>
+          <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"><div class="h-full w-4/5 bg-lime-500 rounded-full"></div></div>
+          <span class="text-xs text-slate-400 w-28 text-right">&lt; 1,000 years</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-20 text-xs font-bold text-emerald-600">Very Strong</span>
+          <div class="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden"><div class="h-full w-full bg-emerald-500 rounded-full"></div></div>
+          <span class="text-xs text-slate-400 w-28 text-right">≥ 1,000 years</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">5. Why entropy works for generated passwords</h2>
+      <p>There are two different scenarios for measuring password strength:</p>
+      <div class="space-y-3 pl-1">
+        <div>
+          <p class="font-semibold text-slate-700 dark:text-slate-200">Human-chosen passwords</p>
+          <p class="text-slate-500 dark:text-slate-400 mt-1">People tend to use dictionary words, dates, keyboard patterns and predictable substitutions. Tools like <em>zxcvbn</em> are designed for this case, decomposing the password into the cheapest combination of known patterns.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-700 dark:text-slate-200">Machine-generated passwords</p>
+          <p class="text-slate-500 dark:text-slate-400 mt-1">When generated with a cryptographic RNG like Python's <code class="text-xs bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded">secrets</code> module, every character is independently and uniformly random. There are no patterns to exploit, so entropy is the exact measure of difficulty.</p>
+        </div>
+      </div>
+      <p>Since OxePass generates all passwords with <code class="text-xs bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded">secrets</code>, an attacker's only option is brute force over the full character pool. This is exactly what the entropy formula calculates.</p>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">6. Practical example</h2>
+      <p>A password from the <strong class="text-slate-700 dark:text-slate-200">Personal</strong> profile (16 characters, all types):</p>
+      <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-600 rounded-xl p-4 space-y-1 font-mono text-xs">
+        <p><span class="text-slate-400">Pool:</span> <span class="text-slate-700 dark:text-slate-200">26 + 26 + 10 + 32 = 94</span></p>
+        <p><span class="text-slate-400">Entropy:</span> <span class="text-slate-700 dark:text-slate-200">16 × log₂(94) = 104.8 bits</span></p>
+        <p><span class="text-slate-400">Search space:</span> <span class="text-slate-700 dark:text-slate-200">2¹⁰⁴·⁸ ≈ 2.04 × 10³¹ combinations</span></p>
+        <p><span class="text-slate-400">Average time:</span> <span class="text-slate-700 dark:text-slate-200">~1.02 × 10²¹ seconds ≈ 32 trillion years</span></p>
+      </div>
+    </section>
+
+    <div class="h-px bg-slate-100 dark:bg-slate-700"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 dark:text-slate-100 text-base">7. Important caveats</h2>
+      <div class="space-y-3 pl-1">
+        <div>
+          <p class="font-semibold text-slate-700 dark:text-slate-200">Crack time is an estimate</p>
+          <p class="text-slate-500 dark:text-slate-400 mt-1">Real time depends on the hashing algorithm used by the service. For example, bcrypt is much slower than MD5, reducing the attack rate to thousands per second.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-700 dark:text-slate-200">Valid only for randomly generated passwords</p>
+          <p class="text-slate-500 dark:text-slate-400 mt-1">If you type your own password, patterns and dictionary words could drastically reduce the real entropy.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-slate-700 dark:text-slate-200">A strong password does not replace 2FA</p>
+          <p class="text-slate-500 dark:text-slate-400 mt-1">Enable two-factor authentication whenever possible. Even the strongest password can be compromised by phishing or a data breach.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="text-center">
+    <a href="/" class="inline-flex items-center gap-2 text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      {{ _('Voltar ao gerador') }}
+    </a>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,4 +1,5 @@
-import random
+import math
+import secrets
 import string
 
 from flask import Flask, g, render_template, request, Response, redirect, url_for
@@ -18,7 +19,7 @@ def get_locale():
 babel = Babel(app, locale_selector=get_locale)
 
 # fmt: off
-_WORDS = [
+_WORDS_PT = [
     "abacaxi","abismo","agulha","alcova","aldeia","amanho","ancora","anjo",
     "aranha","areia","aroma","arvore","asas","astro","atlas","aurora",
     "aviao","azul","bairro","baleia","bambu","banana","barco","basalto",
@@ -48,23 +49,87 @@ _WORDS = [
     "valsa","vapor","vela","veneno","vento","verde","vidro","viola",
     "virado","visor","vista","vitoria","voador","vulcao","xadrez","zebra",
 ]
+
+_WORDS_EN = [
+    "anchor","anvil","apple","arrow","badge","basin","beach","blade",
+    "blaze","bloom","board","brain","brave","brick","bridge","brook",
+    "brush","cabin","camel","candy","cargo","cedar","chain","chalk",
+    "charm","chase","chess","cliff","clock","cloud","cobra","coral",
+    "crane","creek","crown","dance","delta","draft","dream","drift",
+    "eagle","ember","fable","fence","flame","flask","flint","flood",
+    "forge","frost","ghost","globe","glove","grain","grape","grove",
+    "guard","guide","haven","hawk","heart","hedge","heron","honey",
+    "ivory","jewel","joint","juice","knife","latch","layer","lemon",
+    "light","linen","lodge","lunar","manor","maple","marsh","medal",
+    "melon","metal","mirth","moose","mount","nexus","noble","north",
+    "ocean","olive","orbit","otter","oxide","panel","patch","pearl",
+    "pilot","plain","plank","plaza","plume","polar","pride","prism",
+    "pulse","quail","quartz","quest","raven","ridge","river","robin",
+    "royal","sable","scale","scout","shade","shark","shelf","shine",
+    "shore","sigma","slate","slope","smoke","snake","solar","spade",
+    "spark","spear","spine","spire","spray","stamp","steam","steel",
+    "stone","storm","stove","sugar","surge","swift","sword","table",
+    "talon","thorn","tiger","titan","torch","tower","trail","trout",
+    "tulip","ultra","vault","vigor","vinyl","viper","vista","vivid",
+    "wagon","waltz","watch","wheat","whale","width","witch","world",
+    "yacht","zebra","aspen","bison","cider","denim","elfin","foyer",
+    "glyph","hazel","inlet","jasper","knoll","lotus","mango","nylon",
+    "oaken","pixel","radon","serif","topaz","umbra","woven","xylem",
+]
+
+_WORDS_ES = [
+    "abeja","abismo","acero","adobe","aguja","aldea","aleta","alma",
+    "ambar","ancla","angel","arbol","arena","arma","astro","atlas",
+    "aurora","avion","azote","bahia","balsa","bambu","banco","barco",
+    "barro","bello","bisne","bolsa","bosque","brasa","brisa","bruma",
+    "buque","cable","calma","campo","canal","canto","carro","cauce",
+    "cedro","cerco","choza","cielo","cinta","cisne","clave","clima",
+    "cofre","coral","coyote","crema","crudo","cuero","cumbre","danza",
+    "delta","diana","disco","doble","drago","duelo","dunas","eclipse",
+    "elixir","enano","espada","fable","faro","ficha","finca","flauta",
+    "flora","fonda","forja","fuego","gaita","garza","gemas","globo",
+    "golpe","gordo","grano","gruta","guante","hacha","hielo","hierba",
+    "huevo","idolo","impar","indio","istmo","jade","jaula","junco",
+    "labio","lanza","largo","laurel","limon","lince","llama","llave",
+    "lobo","loma","luna","magia","mango","manto","mapa","marca",
+    "menta","metro","minas","monte","mural","nardo","nave","nicho",
+    "noble","norte","nube","oasis","ocaso","oliva","opalo","orbe",
+    "palma","panda","patio","perla","perno","piano","pinta","plata",
+    "playa","poder","poema","polvo","postal","prado","pulpo","queso",
+    "ramas","rastro","reina","reloj","risco","rocas","rosal","rumbo",
+    "sable","sauce","selva","signo","sirena","solar","sonda","surco",
+    "tabla","talon","tango","tigre","timbre","toldo","torre","trigo",
+    "trono","trueno","tumba","tunel","turno","ultra","umbral","unico",
+    "uranio","vaina","valle","vapor","veloz","venda","verde","vidrio",
+    "viento","viola","visor","vivaz","volcan","zarpa","zebra","zorro",
+]
+
+_WORDS = {"pt": _WORDS_PT, "en": _WORDS_EN, "es": _WORDS_ES}
 # fmt: on
 
 _AMBIGUOUS = set("0Oo1lIi")
 _WIFI_AMBIGUOUS = _AMBIGUOUS | set("S5B8Z2")
 
 
-def generate_memorable() -> tuple[str, list[str]]:
-    words = random.sample(_WORDS, 3)
+def _secure_sample(population: list, k: int) -> list:
+    indices = set()
+    while len(indices) < k:
+        indices.add(secrets.randbelow(len(population)))
+    return [population[i] for i in indices]
+
+
+def generate_memorable(lang: str = "en") -> tuple[str, list[str]]:
+    word_list = _WORDS.get(lang, _WORDS["en"])
+    words = _secure_sample(word_list, 3)
     words = [w.capitalize() for w in words]
-    sep = random.choice(["-", ".", "_"])
-    number = str(random.randint(10, 99))
+    sep = secrets.choice(["-", ".", "_"])
+    number = str(secrets.randbelow(90) + 10)
     parts = [words[0], sep, words[1], sep, words[2], sep, number]
     return "".join(parts), parts
 
 
 def generate_backup_code() -> str:
-    digits = [random.choice(string.digits) for _ in range(8)]
+    digits = [secrets.choice(string.digits) for _ in range(8)]
     return f"{''.join(digits[:4])} {''.join(digits[4:])}"
 
 
@@ -100,49 +165,111 @@ def generate_password(
 
     if use_upper and upper:
         charset += upper
-        required.append(random.choice(upper))
+        required.append(secrets.choice(upper))
     if use_lower and lower:
         charset += lower
-        required.append(random.choice(lower))
+        required.append(secrets.choice(lower))
     if use_numbers and digits:
         charset += digits
-        required.append(random.choice(digits))
+        required.append(secrets.choice(digits))
     if use_symbols and symbols:
         charset += symbols
-        required.append(random.choice(symbols))
+        required.append(secrets.choice(symbols))
 
     if not charset:
         return ""
 
     remaining = max(0, length - len(required))
-    chars = required + [random.choice(charset) for _ in range(remaining)]
-    random.shuffle(chars)
+    chars = required + [secrets.choice(charset) for _ in range(remaining)]
+    # Fisher-Yates shuffle with secrets
+    for i in range(len(chars) - 1, 0, -1):
+        j = secrets.randbelow(i + 1)
+        chars[i], chars[j] = chars[j], chars[i]
     return "".join(chars)
 
 
+def _format_crack_time(seconds: float) -> str:
+    if seconds < 1:
+        return _("instantâneo")
+    if seconds < 60:
+        return _("alguns segundos")
+    if seconds < 3600:
+        m = int(seconds / 60)
+        return f"{m} {'minuto' if m == 1 else _('minutos')}"
+    if seconds < 86400:
+        h = int(seconds / 3600)
+        return f"{h} {'hora' if h == 1 else _('horas')}"
+    if seconds < 86400 * 365:
+        d = int(seconds / 86400)
+        return f"{d} {'dia' if d == 1 else _('dias')}"
+    if seconds < 86400 * 365 * 1000:
+        y = int(seconds / (86400 * 365))
+        return f"{y} {'ano' if y == 1 else _('anos')}"
+    if seconds < 86400 * 365 * 1_000_000:
+        ky = int(seconds / (86400 * 365 * 1000))
+        return _("%(n)s mil anos", n=ky)
+    if seconds < 86400 * 365 * 1_000_000_000:
+        my = int(seconds / (86400 * 365 * 1_000_000))
+        return _("%(n)s milhões de anos", n=my)
+    by = seconds / (86400 * 365 * 1_000_000_000)
+    if by > 1000:
+        return _("trilhões de anos")
+    return _("%(n)s bilhões de anos", n=int(by))
+
+
+def _crack_seconds(password: str) -> float:
+    """Entropy-based crack time for cryptographically random passwords.
+
+    Calculates the character pool from what's actually present, then
+    estimates average time at 10 billion guesses/sec (GPU cluster,
+    offline fast hashing like MD5/SHA-1 without salt).
+    """
+    pool = 0
+    if any(c in string.ascii_lowercase for c in password):
+        pool += 26
+    if any(c in string.ascii_uppercase for c in password):
+        pool += 26
+    if any(c in string.digits for c in password):
+        pool += 10
+    if any(c in string.punctuation for c in password):
+        pool += len(string.punctuation)  # 32
+    if pool == 0:
+        return 0
+    entropy = len(password) * math.log2(pool)
+    guesses_per_sec = 10_000_000_000
+    return (2 ** entropy) / (2 * guesses_per_sec)
+
+
 def password_strength(password: str) -> dict:
-    score = 0
-    if any(c.isupper() for c in password):
-        score += 1
-    if any(c.islower() for c in password):
-        score += 1
-    if any(c.isdigit() for c in password):
-        score += 1
-    if any(c in "!@#$%^&*()_+-=[]{}|;:,.<>?" for c in password):
-        score += 1
-    if len(password) >= 16:
-        score += 1
+    seconds = _crack_seconds(password)
+
+    # Score derived from crack time so label and time never contradict
+    if seconds < 600:             # < 10 min
+        score = 0
+    elif seconds < 86400:         # < 1 day
+        score = 1
+    elif seconds < 86400 * 365:   # < 1 year
+        score = 2
+    elif seconds < 86400 * 365 * 1000:  # < 1000 years
+        score = 3
+    else:
+        score = 4
 
     levels = {
-        1: (_("Muito Fraca"), "text-red-500", "w-1/5", "bg-red-400"),
-        2: (_("Fraca"), "text-orange-500", "w-2/5", "bg-orange-400"),
-        3: (_("Moderada"), "text-yellow-600", "w-3/5", "bg-yellow-400"),
-        4: (_("Forte"), "text-lime-600", "w-4/5", "bg-lime-500"),
-        5: (_("Muito Forte"), "text-emerald-600", "w-full", "bg-emerald-500"),
+        0: (_("Muito Fraca"), "text-red-500", "w-1/5", "bg-red-400"),
+        1: (_("Fraca"), "text-orange-500", "w-2/5", "bg-orange-400"),
+        2: (_("Moderada"), "text-yellow-600", "w-3/5", "bg-yellow-400"),
+        3: (_("Forte"), "text-lime-600", "w-4/5", "bg-lime-500"),
+        4: (_("Muito Forte"), "text-emerald-600", "w-full", "bg-emerald-500"),
     }
-    default = (_("Muito Fraca"), "text-red-500", "w-1/5", "bg-red-400")
-    row = levels.get(score, default)
-    return {"label": row[0], "text_color": row[1], "bar_width": row[2], "bar_color": row[3]}
+    row = levels[score]
+    return {
+        "label": row[0],
+        "text_color": row[1],
+        "bar_width": row[2],
+        "bar_color": row[3],
+        "crack_time": _format_crack_time(seconds),
+    }
 
 
 @app.template_filter("select_upper")
@@ -184,8 +311,9 @@ def inject_i18n():
     # Map endpoints to their localized URL patterns
     _url_map = {
         "index":   {"en": "/",            "pt": "/pt/",         "es": "/es/"},
-        "privacy": {"en": "/privacy",     "pt": "/pt/privacy",  "es": "/es/privacy"},
-        "terms":   {"en": "/terms",       "pt": "/pt/terms",    "es": "/es/terms"},
+        "privacy":     {"en": "/privacy",      "pt": "/pt/privacy",      "es": "/es/privacy"},
+        "terms":       {"en": "/terms",        "pt": "/pt/terms",        "es": "/es/terms"},
+        "methodology": {"en": "/methodology",  "pt": "/pt/methodology",  "es": "/es/methodology"},
     }
 
     def lang_url(code):
@@ -260,6 +388,14 @@ def terms():
     return render_template(f"terms_{g.lang_code}.html")
 
 
+@app.route("/methodology")
+@app.route("/<lang_code>/methodology")
+def methodology():
+    if g.lang_code not in SUPPORTED_LANGS:
+        return redirect("/methodology")
+    return render_template(f"methodology_{g.lang_code}.html")
+
+
 @app.route("/robots.txt")
 def robots():
     content = "User-agent: *\nAllow: /\nSitemap: https://oxepass.com/sitemap.xml\n"
@@ -310,7 +446,7 @@ def generate():
 
     for _ in range(count):
         if pw_type == "memorable":
-            pwd, parts = generate_memorable()
+            pwd, parts = generate_memorable(g.lang_code)
             entries.append({"password": pwd, "parts": parts})
 
         elif pw_type == "backup":

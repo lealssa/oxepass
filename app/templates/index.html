@@ -39,7 +39,7 @@
     {
       "@type": "Question",
       "name": "{{ _('Qual a diferença entre senha forte e senha memorizável?') }}",
-      "acceptedAnswer": { "@type": "Answer", "text": "{{ _('Uma senha forte prioriza máxima entropia com caracteres aleatórios. Uma senha memorizável combina três palavras em português com um número e separador, sendo segura e possível de lembrar sem anotações.') }}" }
+      "acceptedAnswer": { "@type": "Answer", "text": "{{ _('Uma senha forte prioriza máxima entropia com caracteres aleatórios. Uma senha memorizável combina três palavras com um número e separador, sendo segura e possível de lembrar sem anotações.') }}" }
     },
     {
       "@type": "Question",
@@ -126,11 +126,11 @@
 
   <!-- Hero -->
   <div class="text-center mb-8 animate-fade-in">
-    <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-2 text-slate-800">
+    <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-2 text-slate-800 dark:text-white">
       {{ _('Gerador de Senhas') }}
       <span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">{{ _('Seguras e Gratuito') }}</span>
     </h1>
-    <p class="text-slate-500 text-sm">{{ _('Crie senhas fortes para Wi-Fi, PIN, redes sociais, trabalho e muito mais — tudo gerado localmente, sem armazenar nada.') }}</p>
+    <p class="text-slate-500 dark:text-slate-400 text-sm">{{ _('Crie senhas fortes para Wi-Fi, PIN, redes sociais, trabalho e muito mais — tudo gerado localmente, sem armazenar nada.') }}</p>
   </div>
 
   <!-- ── PRESETS ── -->
@@ -139,33 +139,33 @@
     <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
       <template x-for="p in presets" :key="p.id">
         <button type="button" @click="applyPreset(p)" :class="{
-            'ring-2 ring-indigo-400  bg-indigo-50  border-indigo-300':  p.color==='indigo'  && activePreset===p.id,
-            'ring-2 ring-slate-400   bg-slate-100  border-slate-300':   p.color==='slate'   && activePreset===p.id,
-            'ring-2 ring-violet-400  bg-violet-50  border-violet-300':  p.color==='violet'  && activePreset===p.id,
-            'ring-2 ring-sky-400     bg-sky-50     border-sky-300':     p.color==='sky'     && activePreset===p.id,
-            'ring-2 ring-amber-400   bg-amber-50   border-amber-300':   p.color==='amber'   && activePreset===p.id,
-            'ring-2 ring-emerald-400 bg-emerald-50 border-emerald-300': p.color==='emerald' && activePreset===p.id,
-            'ring-2 ring-pink-400    bg-pink-50    border-pink-300':    p.color==='pink'    && activePreset===p.id,
-            'ring-2 ring-teal-400    bg-teal-50    border-teal-300':    p.color==='teal'    && activePreset===p.id,
-            'ring-2 ring-rose-400    bg-rose-50    border-rose-300':    p.color==='rose'    && activePreset===p.id,
-            'ring-2 ring-orange-400  bg-orange-50  border-orange-300':  p.color==='orange'  && activePreset===p.id,
-            'ring-2 ring-cyan-400    bg-cyan-50    border-cyan-300':    p.color==='cyan'    && activePreset===p.id,
-            'bg-white border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/50': activePreset!==p.id
+            'ring-2 ring-indigo-400  bg-indigo-50  dark:bg-indigo-950/50  border-indigo-300  dark:border-indigo-600':  p.color==='indigo'  && activePreset===p.id,
+            'ring-2 ring-slate-400   bg-slate-100  dark:bg-slate-700/50  border-slate-300   dark:border-slate-500':   p.color==='slate'   && activePreset===p.id,
+            'ring-2 ring-violet-400  bg-violet-50  dark:bg-violet-950/50 border-violet-300  dark:border-violet-600':  p.color==='violet'  && activePreset===p.id,
+            'ring-2 ring-sky-400     bg-sky-50     dark:bg-sky-950/50    border-sky-300     dark:border-sky-600':     p.color==='sky'     && activePreset===p.id,
+            'ring-2 ring-amber-400   bg-amber-50   dark:bg-amber-950/50  border-amber-300   dark:border-amber-600':   p.color==='amber'   && activePreset===p.id,
+            'ring-2 ring-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 border-emerald-300 dark:border-emerald-600': p.color==='emerald' && activePreset===p.id,
+            'ring-2 ring-pink-400    bg-pink-50    dark:bg-pink-950/50   border-pink-300    dark:border-pink-600':    p.color==='pink'    && activePreset===p.id,
+            'ring-2 ring-teal-400    bg-teal-50    dark:bg-teal-950/50   border-teal-300    dark:border-teal-600':    p.color==='teal'    && activePreset===p.id,
+            'ring-2 ring-rose-400    bg-rose-50    dark:bg-rose-950/50   border-rose-300    dark:border-rose-600':    p.color==='rose'    && activePreset===p.id,
+            'ring-2 ring-orange-400  bg-orange-50  dark:bg-orange-950/50 border-orange-300  dark:border-orange-600':  p.color==='orange'  && activePreset===p.id,
+            'ring-2 ring-cyan-400    bg-cyan-50    dark:bg-cyan-950/50   border-cyan-300    dark:border-cyan-600':    p.color==='cyan'    && activePreset===p.id,
+            'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-600 hover:border-indigo-300 dark:hover:border-indigo-500 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/20': activePreset!==p.id
           }"
           class="relative flex flex-col items-center gap-1.5 p-2.5 rounded-xl border transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md">
 
           <div :class="{
-            'bg-indigo-100  text-indigo-600':  p.color==='indigo',
-            'bg-slate-200   text-slate-600':   p.color==='slate',
-            'bg-violet-100  text-violet-600':  p.color==='violet',
-            'bg-sky-100     text-sky-600':     p.color==='sky',
-            'bg-amber-100   text-amber-600':   p.color==='amber',
-            'bg-emerald-100 text-emerald-600': p.color==='emerald',
-            'bg-pink-100    text-pink-600':    p.color==='pink',
-            'bg-teal-100    text-teal-600':    p.color==='teal',
-            'bg-rose-100    text-rose-600':    p.color==='rose',
-            'bg-orange-100  text-orange-600':  p.color==='orange',
-            'bg-cyan-100    text-cyan-600':    p.color==='cyan',
+            'bg-indigo-100  dark:bg-indigo-900/50  text-indigo-600  dark:text-indigo-400':  p.color==='indigo',
+            'bg-slate-200   dark:bg-slate-600       text-slate-600   dark:text-slate-300':   p.color==='slate',
+            'bg-violet-100  dark:bg-violet-900/50  text-violet-600  dark:text-violet-400':  p.color==='violet',
+            'bg-sky-100     dark:bg-sky-900/50     text-sky-600     dark:text-sky-400':     p.color==='sky',
+            'bg-amber-100   dark:bg-amber-900/50   text-amber-600   dark:text-amber-400':   p.color==='amber',
+            'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400': p.color==='emerald',
+            'bg-pink-100    dark:bg-pink-900/50    text-pink-600    dark:text-pink-400':    p.color==='pink',
+            'bg-teal-100    dark:bg-teal-900/50    text-teal-600    dark:text-teal-400':    p.color==='teal',
+            'bg-rose-100    dark:bg-rose-900/50    text-rose-600    dark:text-rose-400':    p.color==='rose',
+            'bg-orange-100  dark:bg-orange-900/50  text-orange-600  dark:text-orange-400':  p.color==='orange',
+            'bg-cyan-100    dark:bg-cyan-900/50    text-cyan-600    dark:text-cyan-400':    p.color==='cyan',
           }" class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all">
             <template x-if="p.icon==='user'"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -229,8 +229,8 @@
           </div>
 
           <div class="text-center">
-            <div class="text-[11px] font-semibold text-slate-700 leading-tight" x-text="presetLabel(p.id)"></div>
-            <div class="text-[10px] text-slate-400 mt-0.5 leading-tight" x-text="presetDesc(p.id)"></div>
+            <div class="text-[11px] font-semibold text-slate-700 dark:text-slate-200 leading-tight" x-text="presetLabel(p.id)"></div>
+            <div class="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5 leading-tight" x-text="presetDesc(p.id)"></div>
           </div>
 
           <div x-show="activePreset===p.id" class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full"
@@ -247,9 +247,9 @@
     <!-- Slider -->
     <div class="space-y-4" x-show="showControls" x-transition>
       <div class="flex items-center justify-between">
-        <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest">{{ _('Tamanho da Senha') }}</label>
+        <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest">{{ _('Tamanho da Senha') }}</label>
         <div class="flex items-center gap-1.5">
-          <span class="text-2xl font-bold font-mono text-indigo-600 tabular-nums w-10 text-right"
+          <span class="text-2xl font-bold font-mono text-indigo-600 dark:text-indigo-400 tabular-nums w-10 text-right"
             x-text="length"></span>
           <span class="text-slate-400 text-xs">chars</span>
         </div>
@@ -257,35 +257,35 @@
       <div class="relative">
         <input id="length-range" type="range" min="4" max="64" x-model="length"
           @input="updateSlider($event.target.value)" class="w-full" style="--range-pct: 18.75%" />
-        <div class="flex justify-between mt-2 text-xs text-slate-300 font-mono">
+        <div class="flex justify-between mt-2 text-xs text-slate-300 dark:text-slate-600 font-mono">
           <span>4</span><span>16</span><span>32</span><span>48</span><span>64</span>
         </div>
       </div>
     </div>
 
     <!-- Divider -->
-    <div class="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" x-show="showControls" x-transition>
+    <div class="h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent" x-show="showControls" x-transition>
     </div>
 
     <!-- Complexity -->
     <div class="space-y-3" x-show="showControls" x-transition>
-      <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest block">{{ _('Complexidade') }}</label>
+      <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">{{ _('Complexidade') }}</label>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
 
         <button type="button" @click="uppercase = !uppercase; activePreset = null; pwType = 'random'"
           :class="uppercase ? 'toggle-card active' : 'toggle-card'"
-          class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl border border-slate-200 cursor-pointer text-left hover:border-indigo-300 transition-all">
-          <div :class="uppercase ? 'bg-indigo-100 text-indigo-600' : 'bg-slate-100 text-slate-400'"
+          class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl border border-slate-200 dark:border-slate-600 cursor-pointer text-left hover:border-indigo-300 dark:hover:border-indigo-500 transition-all">
+          <div :class="uppercase ? 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'"
             class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all">
             <span class="text-base font-bold font-mono">A</span>
           </div>
           <div class="min-w-0">
-            <div :class="uppercase ? 'text-slate-800' : 'text-slate-400'"
+            <div :class="uppercase ? 'text-slate-800 dark:text-slate-100' : 'text-slate-400'"
               class="text-sm font-semibold transition-colors">{{ _('Maiúsculas') }}</div>
             <div class="text-xs text-slate-400 font-mono">A–Z</div>
           </div>
           <div class="ml-auto flex-shrink-0">
-            <div :class="uppercase ? 'bg-indigo-500' : 'bg-slate-200'"
+            <div :class="uppercase ? 'bg-indigo-500' : 'bg-slate-200 dark:bg-slate-600'"
               class="w-5 h-5 rounded-full flex items-center justify-center transition-all">
               <svg x-show="uppercase" class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
@@ -296,18 +296,18 @@
 
         <button type="button" @click="lowercase = !lowercase; activePreset = null; pwType = 'random'"
           :class="lowercase ? 'toggle-card active' : 'toggle-card'"
-          class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl border border-slate-200 cursor-pointer text-left hover:border-indigo-300 transition-all">
-          <div :class="lowercase ? 'bg-indigo-100 text-indigo-600' : 'bg-slate-100 text-slate-400'"
+          class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl border border-slate-200 dark:border-slate-600 cursor-pointer text-left hover:border-indigo-300 dark:hover:border-indigo-500 transition-all">
+          <div :class="lowercase ? 'bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'"
             class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all">
             <span class="text-base font-bold font-mono">a</span>
           </div>
           <div class="min-w-0">
-            <div :class="lowercase ? 'text-slate-800' : 'text-slate-400'"
+            <div :class="lowercase ? 'text-slate-800 dark:text-slate-100' : 'text-slate-400'"
               class="text-sm font-semibold transition-colors">{{ _('Minúsculas') }}</div>
             <div class="text-xs text-slate-400 font-mono">a–z</div>
           </div>
           <div class="ml-auto flex-shrink-0">
-            <div :class="lowercase ? 'bg-indigo-500' : 'bg-slate-200'"
+            <div :class="lowercase ? 'bg-indigo-500' : 'bg-slate-200 dark:bg-slate-600'"
               class="w-5 h-5 rounded-full flex items-center justify-center transition-all">
               <svg x-show="lowercase" class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
@@ -318,18 +318,18 @@
 
         <button type="button" @click="numbers = !numbers; activePreset = null; pwType = 'random'"
           :class="numbers ? 'toggle-card active' : 'toggle-card'"
-          class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl border border-slate-200 cursor-pointer text-left hover:border-indigo-300 transition-all">
-          <div :class="numbers ? 'bg-violet-100 text-violet-600' : 'bg-slate-100 text-slate-400'"
+          class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl border border-slate-200 dark:border-slate-600 cursor-pointer text-left hover:border-indigo-300 dark:hover:border-indigo-500 transition-all">
+          <div :class="numbers ? 'bg-violet-100 dark:bg-violet-900/50 text-violet-600 dark:text-violet-400' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'"
             class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all">
             <span class="text-base font-bold font-mono">9</span>
           </div>
           <div class="min-w-0">
-            <div :class="numbers ? 'text-slate-800' : 'text-slate-400'" class="text-sm font-semibold transition-colors">
+            <div :class="numbers ? 'text-slate-800 dark:text-slate-100' : 'text-slate-400'" class="text-sm font-semibold transition-colors">
               {{ _('Números') }}</div>
             <div class="text-xs text-slate-400 font-mono">0–9</div>
           </div>
           <div class="ml-auto flex-shrink-0">
-            <div :class="numbers ? 'bg-violet-500' : 'bg-slate-200'"
+            <div :class="numbers ? 'bg-violet-500' : 'bg-slate-200 dark:bg-slate-600'"
               class="w-5 h-5 rounded-full flex items-center justify-center transition-all">
               <svg x-show="numbers" class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
@@ -340,18 +340,18 @@
 
         <button type="button" @click="symbols = !symbols; activePreset = null; pwType = 'random'"
           :class="symbols ? 'toggle-card active' : 'toggle-card'"
-          class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl border border-slate-200 cursor-pointer text-left hover:border-indigo-300 transition-all">
-          <div :class="symbols ? 'bg-fuchsia-100 text-fuchsia-600' : 'bg-slate-100 text-slate-400'"
+          class="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl border border-slate-200 dark:border-slate-600 cursor-pointer text-left hover:border-indigo-300 dark:hover:border-indigo-500 transition-all">
+          <div :class="symbols ? 'bg-fuchsia-100 dark:bg-fuchsia-900/50 text-fuchsia-600 dark:text-fuchsia-400' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'"
             class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all">
             <span class="text-base font-bold font-mono">@</span>
           </div>
           <div class="min-w-0">
-            <div :class="symbols ? 'text-slate-800' : 'text-slate-400'" class="text-sm font-semibold transition-colors">
+            <div :class="symbols ? 'text-slate-800 dark:text-slate-100' : 'text-slate-400'" class="text-sm font-semibold transition-colors">
               {{ _('Símbolos') }}</div>
             <div class="text-xs text-slate-400 font-mono">!@#$%</div>
           </div>
           <div class="ml-auto flex-shrink-0">
-            <div :class="symbols ? 'bg-fuchsia-500' : 'bg-slate-200'"
+            <div :class="symbols ? 'bg-fuchsia-500' : 'bg-slate-200 dark:bg-slate-600'"
               class="w-5 h-5 rounded-full flex items-center justify-center transition-all">
               <svg x-show="symbols" class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
@@ -365,11 +365,11 @@
 
     <!-- Exclude characters -->
     <div x-show="showExclude" x-transition class="space-y-2">
-      <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest block">{{ _('Excluir Caracteres') }}</label>
+      <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">{{ _('Excluir Caracteres') }}</label>
       <div class="relative">
-        <input type="text" x-model="exclude" placeholder='ex: 0 O l 1 " &apos;' class="w-full px-4 py-2.5 text-sm font-mono rounded-xl border border-slate-200
-                      bg-white text-slate-700 placeholder-slate-300
-                      focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400
+        <input type="text" x-model="exclude" placeholder='ex: 0 O l 1 " &apos;' class="w-full px-4 py-2.5 text-sm font-mono rounded-xl border border-slate-200 dark:border-slate-600
+                      bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 placeholder-slate-300 dark:placeholder-slate-600
+                      focus:outline-none focus:ring-2 focus:ring-indigo-300 dark:focus:ring-indigo-600 focus:border-indigo-400 dark:focus:border-indigo-500
                       transition-all" />
         <button x-show="exclude.length > 0" @click="exclude = ''"
           class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500 transition-colors">
@@ -382,49 +382,49 @@
 
     <!-- Memorable hint -->
     <div x-show="pwType === 'memorable'" x-transition
-      class="flex items-start gap-3 bg-indigo-50 border border-indigo-100 rounded-xl px-4 py-3.5">
+      class="flex items-start gap-3 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800 rounded-xl px-4 py-3.5">
       <div
-        class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+        class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 text-indigo-500 dark:text-indigo-400 flex items-center justify-center flex-shrink-0 mt-0.5">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
       </div>
       <div>
-        <p class="text-sm font-semibold text-indigo-700 mb-0.5">{{ _('Senha Memorizável') }}</p>
-        <p class="text-xs text-indigo-400 leading-relaxed">
-          {{ _('3 palavras em português + número —') }} <span class="font-medium text-indigo-500">{{ _('fácil de lembrar') }}</span>{{ _(', difícil de adivinhar.') }}
+        <p class="text-sm font-semibold text-indigo-700 dark:text-indigo-300 mb-0.5">{{ _('Senha Memorizável') }}</p>
+        <p class="text-xs text-indigo-400 dark:text-indigo-400/80 leading-relaxed">
+          {{ _('3 palavras + número —') }} <span class="font-medium text-indigo-500 dark:text-indigo-300">{{ _('fácil de lembrar') }}</span>{{ _(', difícil de adivinhar.') }}
         </p>
       </div>
     </div>
 
     <!-- Backup hint -->
     <div x-show="pwType === 'backup'" x-transition
-      class="flex items-start gap-3 bg-teal-50 border border-teal-100 rounded-xl px-4 py-3.5">
-      <div class="w-8 h-8 rounded-lg bg-teal-100 text-teal-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+      class="flex items-start gap-3 bg-teal-50 dark:bg-teal-950/40 border border-teal-100 dark:border-teal-800 rounded-xl px-4 py-3.5">
+      <div class="w-8 h-8 rounded-lg bg-teal-100 dark:bg-teal-900/50 text-teal-500 dark:text-teal-400 flex items-center justify-center flex-shrink-0 mt-0.5">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
       </div>
       <div>
-        <p class="text-sm font-semibold text-teal-700 mb-0.5">{{ _('Código de Backup') }}</p>
-        <p class="text-xs text-teal-500 leading-relaxed">
-          {{ _('Código numérico de') }} <span class="font-medium text-teal-600">{{ _('8 dígitos') }}</span> {{ _('para recuperação de conta, no formato') }} <span class="font-mono font-medium text-teal-600">XXXX XXXX</span>.
+        <p class="text-sm font-semibold text-teal-700 dark:text-teal-300 mb-0.5">{{ _('Código de Backup') }}</p>
+        <p class="text-xs text-teal-500 dark:text-teal-400/80 leading-relaxed">
+          {{ _('Código numérico de') }} <span class="font-medium text-teal-600 dark:text-teal-300">{{ _('8 dígitos') }}</span> {{ _('para recuperação de conta, no formato') }} <span class="font-mono font-medium text-teal-600 dark:text-teal-300">XXXX XXXX</span>.
         </p>
       </div>
     </div>
 
     <!-- Divider before bottom controls -->
-    <div class="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+    <div class="h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent"></div>
 
     <!-- Quantity selector -->
     <div class="space-y-2">
-      <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest block">{{ _('Quantidade de senhas') }}</label>
-      <div class="flex bg-slate-100 rounded-xl p-1 gap-1">
+      <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">{{ _('Quantidade de senhas') }}</label>
+      <div class="flex bg-slate-100 dark:bg-slate-700/50 rounded-xl p-1 gap-1">
         <template x-for="n in [1, 3, 5, 10]" :key="n">
           <button type="button" @click="count = n"
-            :class="count === n ? 'bg-white text-indigo-600 shadow-sm font-bold' : 'text-slate-500 hover:text-slate-700'"
+            :class="count === n ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 shadow-sm font-bold' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'"
             class="flex-1 py-2 rounded-lg text-sm font-semibold transition-all"
             x-text="countLabel(n)">
           </button>
@@ -438,7 +438,7 @@
              bg-gradient-to-r from-indigo-600 to-violet-600
              hover:from-indigo-500 hover:to-violet-500
              active:scale-[0.98]
-             shadow-lg shadow-indigo-300/60 hover:shadow-indigo-400/60
+             shadow-lg shadow-indigo-300/60 dark:shadow-indigo-900/60 hover:shadow-indigo-400/60
              transition-all duration-200
              flex items-center justify-center gap-3 group">
 
@@ -476,39 +476,39 @@
 
   <!-- Como funciona -->
   <section>
-    <h2 class="text-xl font-bold text-slate-800 mb-6 text-center">{{ _('Como funciona o OxePass') }}</h2>
-    <div class="card rounded-2xl divide-y divide-slate-100">
+    <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-6 text-center">{{ _('Como funciona o OxePass') }}</h2>
+    <div class="card rounded-2xl divide-y divide-slate-100 dark:divide-slate-700">
       <div class="flex items-start gap-4 p-5">
-        <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('1. Escolha um perfil') }}</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Selecione entre 13 perfis prontos — pessoal, Wi-Fi, corporativo, memorizável e mais — ou configure manualmente o comprimento, complexidade e caracteres a evitar.') }}</p>
+          <h3 class="font-semibold text-slate-700 dark:text-slate-200 text-sm mb-1">{{ _('1. Escolha um perfil') }}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Selecione entre 13 perfis prontos — pessoal, Wi-Fi, corporativo, memorizável e mais — ou configure manualmente o comprimento, complexidade e caracteres a evitar.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
-        <div class="w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center flex-shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-violet-100 dark:bg-violet-900/50 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('2. Gere com um clique') }}</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Clique em "Gerar Senha" e a senha é criada instantaneamente no servidor usando geração aleatória criptograficamente segura. Você pode gerar até 10 senhas de uma vez.') }}</p>
+          <h3 class="font-semibold text-slate-700 dark:text-slate-200 text-sm mb-1">{{ _('2. Gere com um clique') }}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Clique em "Gerar Senha" e a senha é criada instantaneamente no servidor usando geração aleatória criptograficamente segura. Você pode gerar até 10 senhas de uma vez.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
-        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('3. Copie com segurança') }}</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Copie a senha com um clique ou baixe todas em um arquivo .txt. A senha nunca é salva, registrada ou transmitida para terceiros.') }}</p>
+          <h3 class="font-semibold text-slate-700 dark:text-slate-200 text-sm mb-1">{{ _('3. Copie com segurança') }}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Copie a senha com um clique ou baixe todas em um arquivo .txt. A senha nunca é salva, registrada ou transmitida para terceiros.') }}</p>
         </div>
       </div>
     </div>
@@ -516,39 +516,39 @@
 
   <!-- Por que é seguro -->
   <section>
-    <h2 class="text-xl font-bold text-slate-800 mb-6 text-center">{{ _('Por que o OxePass é seguro') }}</h2>
-    <div class="card rounded-2xl divide-y divide-slate-100">
+    <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-6 text-center">{{ _('Por que o OxePass é seguro') }}</h2>
+    <div class="card rounded-2xl divide-y divide-slate-100 dark:divide-slate-700">
       <div class="flex items-start gap-4 p-5">
-        <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Sem armazenamento') }}</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">{{ _('As senhas são geradas no momento do clique e descartadas imediatamente após o envio ao navegador. Não há banco de dados, logs ou histórico de senhas geradas.') }}</p>
+          <h3 class="font-semibold text-slate-700 dark:text-slate-200 text-sm mb-1">{{ _('Sem armazenamento') }}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('As senhas são geradas no momento do clique e descartadas imediatamente após o envio ao navegador. Não há banco de dados, logs ou histórico de senhas geradas.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
-        <div class="w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center flex-shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-violet-100 dark:bg-violet-900/50 text-violet-600 dark:text-violet-400 flex items-center justify-center flex-shrink-0">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Sem rastreamento') }}</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Não usamos cookies de rastreamento, scripts de anúncios ou ferramentas de analytics que coletam dados pessoais. Sua privacidade é prioridade absoluta.') }}</p>
+          <h3 class="font-semibold text-slate-700 dark:text-slate-200 text-sm mb-1">{{ _('Sem rastreamento') }}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Não usamos cookies de rastreamento, scripts de anúncios ou ferramentas de analytics que coletam dados pessoais. Sua privacidade é prioridade absoluta.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
-        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Geração criptograficamente segura') }}</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Utilizamos o módulo random com seed de sistema operacional do Python, equivalente ao módulo secrets, garantindo entropia real e imprevisível.') }}</p>
+          <h3 class="font-semibold text-slate-700 dark:text-slate-200 text-sm mb-1">{{ _('Geração criptograficamente segura') }}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Utilizamos o módulo random com seed de sistema operacional do Python, equivalente ao módulo secrets, garantindo entropia real e imprevisível.') }}</p>
         </div>
       </div>
     </div>
@@ -556,34 +556,34 @@
 
   <!-- Dicas de segurança -->
   <section>
-    <h2 class="text-xl font-bold text-slate-800 mb-6 text-center">{{ _('Dicas para criar senhas seguras') }}</h2>
-    <div class="card rounded-2xl divide-y divide-slate-100">
+    <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-6 text-center">{{ _('Dicas para criar senhas seguras') }}</h2>
+    <div class="card rounded-2xl divide-y divide-slate-100 dark:divide-slate-700">
       <div class="flex items-start gap-4 p-5">
-        <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">01</span>
+        <span class="text-indigo-400 dark:text-indigo-500 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">01</span>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Use pelo menos 12 caracteres') }}</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Cada caractere adicional multiplica exponencialmente o tempo necessário para quebrar a senha por força bruta. Para contas importantes, prefira 16 ou mais.') }}</p>
+          <h3 class="font-semibold text-slate-700 dark:text-slate-200 text-sm mb-1">{{ _('Use pelo menos 12 caracteres') }}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Cada caractere adicional multiplica exponencialmente o tempo necessário para quebrar a senha por força bruta. Para contas importantes, prefira 16 ou mais.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
-        <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">02</span>
+        <span class="text-indigo-400 dark:text-indigo-500 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">02</span>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Nunca reutilize senhas') }}</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Se um serviço vazar seus dados, todas as contas que usam a mesma senha ficam expostas. Use uma senha única e diferente para cada serviço ou site.') }}</p>
+          <h3 class="font-semibold text-slate-700 dark:text-slate-200 text-sm mb-1">{{ _('Nunca reutilize senhas') }}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Se um serviço vazar seus dados, todas as contas que usam a mesma senha ficam expostas. Use uma senha única e diferente para cada serviço ou site.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
-        <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">03</span>
+        <span class="text-indigo-400 dark:text-indigo-500 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">03</span>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Use um gerenciador de senhas') }}</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Ferramentas como Bitwarden, 1Password ou KeePass armazenam e preenchem suas senhas automaticamente com segurança, sem que você precise memorizá-las.') }}</p>
+          <h3 class="font-semibold text-slate-700 dark:text-slate-200 text-sm mb-1">{{ _('Use um gerenciador de senhas') }}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Ferramentas como Bitwarden, 1Password ou KeePass armazenam e preenchem suas senhas automaticamente com segurança, sem que você precise memorizá-las.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
-        <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">04</span>
+        <span class="text-indigo-400 dark:text-indigo-500 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">04</span>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Ative a autenticação em dois fatores (2FA)') }}</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Mesmo que sua senha seja descoberta, o 2FA impede o acesso sem o segundo fator — geralmente um código temporário gerado no celular ou por e-mail.') }}</p>
+          <h3 class="font-semibold text-slate-700 dark:text-slate-200 text-sm mb-1">{{ _('Ative a autenticação em dois fatores (2FA)') }}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Mesmo que sua senha seja descoberta, o 2FA impede o acesso sem o segundo fator — geralmente um código temporário gerado no celular ou por e-mail.') }}</p>
         </div>
       </div>
     </div>
@@ -591,67 +591,67 @@
 
   <!-- FAQ -->
   <section>
-    <h2 class="text-xl font-bold text-slate-800 mb-6 text-center">{{ _('Perguntas Frequentes') }}</h2>
+    <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-6 text-center">{{ _('Perguntas Frequentes') }}</h2>
     <div class="space-y-3">
 
       <details class="card rounded-2xl group">
-        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 dark:text-slate-200 text-sm">
           {{ _('O OxePass armazena ou registra minhas senhas?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('Não. As senhas são geradas no servidor no momento do clique e descartadas imediatamente após o envio ao navegador. Não existem logs, banco de dados ou qualquer forma de armazenamento.') }}</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Não. As senhas são geradas no servidor no momento do clique e descartadas imediatamente após o envio ao navegador. Não existem logs, banco de dados ou qualquer forma de armazenamento.') }}</p>
       </details>
 
       <details class="card rounded-2xl group">
-        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 dark:text-slate-200 text-sm">
           {{ _('Qual o tamanho mínimo recomendado para uma senha forte?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('O mínimo recomendado é 12 caracteres. Para contas importantes — como e-mail, banco ou gerenciador de senhas — use 16 caracteres ou mais, combinando letras maiúsculas, minúsculas, números e símbolos.') }}</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('O mínimo recomendado é 12 caracteres. Para contas importantes — como e-mail, banco ou gerenciador de senhas — use 16 caracteres ou mais, combinando letras maiúsculas, minúsculas, números e símbolos.') }}</p>
       </details>
 
       <details class="card rounded-2xl group">
-        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 dark:text-slate-200 text-sm">
           {{ _('O que são caracteres ambíguos e por que evitá-los?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('Caracteres ambíguos são aqueles visualmente parecidos, como o número 0 e a letra O, ou o número 1 com as letras l e I. Evitá-los reduz erros ao digitar a senha manualmente, como em redes Wi-Fi ou dispositivos sem teclado virtual.') }}</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Caracteres ambíguos são aqueles visualmente parecidos, como o número 0 e a letra O, ou o número 1 com as letras l e I. Evitá-los reduz erros ao digitar a senha manualmente, como em redes Wi-Fi ou dispositivos sem teclado virtual.') }}</p>
       </details>
 
       <details class="card rounded-2xl group">
-        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 dark:text-slate-200 text-sm">
           {{ _('Qual a diferença entre senha forte e senha memorizável?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('Uma senha forte prioriza máxima entropia com caracteres aleatórios — ideal para contas críticas armazenadas em gerenciadores. Uma senha memorizável combina três palavras em português com um número e separador, sendo segura o suficiente e possível de lembrar sem anotações.') }}</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Uma senha forte prioriza máxima entropia com caracteres aleatórios — ideal para contas críticas armazenadas em gerenciadores. Uma senha memorizável combina três palavras com um número e separador, sendo segura o suficiente e possível de lembrar sem anotações.') }}</p>
       </details>
 
       <details class="card rounded-2xl group">
-        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 dark:text-slate-200 text-sm">
           {{ _('Por que não devo usar a mesma senha em sites diferentes?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('Em vazamentos de dados — que ocorrem com frequência em serviços online — as senhas expostas são testadas automaticamente em outros sites. Se você reutilizar a mesma senha, uma única brecha compromete todas as suas contas. Use senhas únicas para cada serviço.') }}</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Em vazamentos de dados — que ocorrem com frequência em serviços online — as senhas expostas são testadas automaticamente em outros sites. Se você reutilizar a mesma senha, uma única brecha compromete todas as suas contas. Use senhas únicas para cada serviço.') }}</p>
       </details>
 
       <details class="card rounded-2xl group">
-        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
+        <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 dark:text-slate-200 text-sm">
           {{ _('Posso gerar várias senhas de uma vez?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('Sim. O seletor de quantidade permite gerar 1, 3, 5 ou 10 senhas simultaneamente. Útil para criar senhas para múltiplos usuários ou serviços de uma só vez. Você também pode baixar todas em um arquivo .txt.') }}</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{{ _('Sim. O seletor de quantidade permite gerar 1, 3, 5 ou 10 senhas simultaneamente. Útil para criar senhas para múltiplos usuários ou serviços de uma só vez. Você também pode baixar todas em um arquivo .txt.') }}</p>
       </details>
 
     </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-18 16:45-0300\n"
+"POT-Creation-Date: 2026-03-18 17:26-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,206 +17,206 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/app.py:146 app/app.py:155
+#: app/app.py:136
 msgid "instantâneo"
 msgstr ""
 
-#: app/app.py:157
+#: app/app.py:138
 msgid "alguns segundos"
 msgstr ""
 
-#: app/app.py:160
+#: app/app.py:141
 msgid "minutos"
 msgstr ""
 
-#: app/app.py:163
+#: app/app.py:144
 msgid "horas"
 msgstr ""
 
-#: app/app.py:166
+#: app/app.py:147
 msgid "dias"
 msgstr ""
 
-#: app/app.py:169
+#: app/app.py:150
 msgid "anos"
 msgstr ""
 
-#: app/app.py:172
+#: app/app.py:153
 #, python-format
 msgid "%(n)s mil anos"
 msgstr ""
 
-#: app/app.py:175
+#: app/app.py:156
 #, python-format
 msgid "%(n)s milhões de anos"
 msgstr ""
 
-#: app/app.py:178
+#: app/app.py:159
 msgid "trilhões de anos"
 msgstr ""
 
-#: app/app.py:180
+#: app/app.py:161
 msgid "bilhões de anos"
 msgstr ""
 
-#: app/app.py:181
+#: app/app.py:162
 #, python-format
 msgid "%(n)s bilhões de anos"
 msgstr ""
 
-#: app/app.py:198 app/app.py:204
+#: app/app.py:170
 msgid "Muito Fraca"
 msgstr ""
 
-#: app/app.py:199
+#: app/app.py:171
 msgid "Fraca"
 msgstr ""
 
-#: app/app.py:200
+#: app/app.py:172
 msgid "Moderada"
 msgstr ""
 
-#: app/app.py:201
+#: app/app.py:173
 msgid "Forte"
 msgstr ""
 
-#: app/app.py:202
+#: app/app.py:174
 msgid "Muito Forte"
 msgstr ""
 
-#: app/app.py:271
+#: app/app.py:244
 msgid "senha"
 msgstr ""
 
-#: app/app.py:272
+#: app/app.py:245
 msgid "senhas"
 msgstr ""
 
-#: app/app.py:273
+#: app/app.py:246
 msgid "Gerar"
 msgstr ""
 
-#: app/app.py:274
+#: app/app.py:247
 msgid "Gerar Senha"
 msgstr ""
 
-#: app/app.py:275
+#: app/app.py:248
 msgid "Gerar Senha Memorizável"
 msgstr ""
 
-#: app/app.py:276
+#: app/app.py:249
 msgid "Gerar Código de Backup"
 msgstr ""
 
-#: app/app.py:277 app/templates/partials/password_result.html:6
+#: app/app.py:250 app/templates/partials/password_result.html:6
 msgid "senhas geradas"
 msgstr ""
 
-#: app/app.py:278 app/templates/partials/password_result.html:6
+#: app/app.py:251 app/templates/partials/password_result.html:6
 msgid "Sua senha gerada"
 msgstr ""
 
-#: app/app.py:280
+#: app/app.py:253
 msgid "Pessoal"
 msgstr ""
 
-#: app/app.py:280
+#: app/app.py:253
 msgid "uso diário"
 msgstr ""
 
-#: app/app.py:281
+#: app/app.py:254
 msgid "Wi-Fi"
 msgstr ""
 
-#: app/app.py:281
+#: app/app.py:254
 msgid "redes domésticas"
 msgstr ""
 
-#: app/app.py:282
+#: app/app.py:255
 msgid "Memorizável"
 msgstr ""
 
-#: app/app.py:282 app/templates/index.html:396
+#: app/app.py:255 app/templates/index.html:396
 msgid "fácil de lembrar"
 msgstr ""
 
-#: app/app.py:283
+#: app/app.py:256
 msgid "PIN"
 msgstr ""
 
-#: app/app.py:283
+#: app/app.py:256
 msgid "desbloqueio"
 msgstr ""
 
-#: app/app.py:284
+#: app/app.py:257
 msgid "Sênior"
 msgstr ""
 
-#: app/app.py:284
+#: app/app.py:257
 msgid "fácil de ler"
 msgstr ""
 
-#: app/app.py:285
+#: app/app.py:258
 msgid "Backup"
 msgstr ""
 
-#: app/app.py:285
+#: app/app.py:258
 msgid "recuperação"
 msgstr ""
 
-#: app/app.py:286
+#: app/app.py:259
 msgid "Corporativo"
 msgstr ""
 
-#: app/app.py:286
+#: app/app.py:259
 msgid "política de TI"
 msgstr ""
 
-#: app/app.py:287
+#: app/app.py:260
 msgid "Master"
 msgstr ""
 
-#: app/app.py:287
+#: app/app.py:260
 msgid "cofre de senhas"
 msgstr ""
 
-#: app/app.py:288
+#: app/app.py:261
 msgid "Legado"
 msgstr ""
 
-#: app/app.py:288
+#: app/app.py:261
 msgid "sistemas antigos"
 msgstr ""
 
-#: app/app.py:289
+#: app/app.py:262
 msgid "API Key"
 msgstr ""
 
-#: app/app.py:289
+#: app/app.py:262
 msgid "integrações"
 msgstr ""
 
-#: app/app.py:290
+#: app/app.py:263
 msgid "Token"
 msgstr ""
 
-#: app/app.py:290
+#: app/app.py:263
 msgid "acesso a APIs"
 msgstr ""
 
-#: app/app.py:291
+#: app/app.py:264
 msgid "Shell-safe"
 msgstr ""
 
-#: app/app.py:291
+#: app/app.py:264
 msgid "terminais bash"
 msgstr ""
 
-#: app/app.py:292
+#: app/app.py:265
 msgid "URL-safe"
 msgstr ""
 
-#: app/app.py:292
+#: app/app.py:265
 msgid "configs e variáveis"
 msgstr ""
 
@@ -358,19 +358,19 @@ msgstr ""
 msgid "Complexidade"
 msgstr ""
 
-#: app/templates/index.html:284 app/templates/partials/password_result.html:148
+#: app/templates/index.html:284 app/templates/partials/password_result.html:156
 msgid "Maiúsculas"
 msgstr ""
 
-#: app/templates/index.html:306 app/templates/partials/password_result.html:154
+#: app/templates/index.html:306 app/templates/partials/password_result.html:162
 msgid "Minúsculas"
 msgstr ""
 
-#: app/templates/index.html:328 app/templates/partials/password_result.html:160
+#: app/templates/index.html:328 app/templates/partials/password_result.html:168
 msgid "Números"
 msgstr ""
 
-#: app/templates/index.html:350 app/templates/partials/password_result.html:166
+#: app/templates/index.html:350 app/templates/partials/password_result.html:174
 msgid "Símbolos"
 msgstr ""
 
@@ -571,47 +571,53 @@ msgid ""
 "serviços de uma só vez. Você também pode baixar todas em um arquivo .txt."
 msgstr ""
 
-#: app/templates/privacy.html:96 app/templates/privacy_en.html:96
-#: app/templates/privacy_es.html:96 app/templates/privacy_pt.html:96
-#: app/templates/terms.html:110 app/templates/terms_en.html:110
-#: app/templates/terms_es.html:110 app/templates/terms_pt.html:110
+#: app/templates/methodology_en.html:120 app/templates/methodology_es.html:120
+#: app/templates/methodology_pt.html:120 app/templates/privacy.html:96
+#: app/templates/privacy_en.html:96 app/templates/privacy_es.html:96
+#: app/templates/privacy_pt.html:96 app/templates/terms.html:110
+#: app/templates/terms_en.html:110 app/templates/terms_es.html:110
+#: app/templates/terms_pt.html:110
 msgid "Voltar ao gerador"
 msgstr ""
 
-#: app/templates/partials/password_result.html:21
+#: app/templates/partials/password_result.html:22
 msgid "Baixar .txt"
 msgstr ""
 
-#: app/templates/partials/password_result.html:40
+#: app/templates/partials/password_result.html:41
 msgid "Copiar"
 msgstr ""
 
-#: app/templates/partials/password_result.html:99
+#: app/templates/partials/password_result.html:101
 msgid "Copiado para a área de transferência!"
 msgstr ""
 
-#: app/templates/partials/password_result.html:106
+#: app/templates/partials/password_result.html:108
 msgid "Força da senha"
 msgstr ""
 
-#: app/templates/partials/password_result.html:118
+#: app/templates/partials/password_result.html:121
 msgid "Tempo para quebrar:"
 msgstr ""
 
-#: app/templates/partials/password_result.html:133
+#: app/templates/partials/password_result.html:125
+msgid "Como medimos?"
+msgstr ""
+
+#: app/templates/partials/password_result.html:141
 msgid "Fácil de memorizar"
 msgstr ""
 
-#: app/templates/partials/password_result.html:137
+#: app/templates/partials/password_result.html:145
 msgid "3 palavras + número"
 msgstr ""
 
-#: app/templates/partials/password_result.html:142
+#: app/templates/partials/password_result.html:150
 msgid "8 dígitos · formato XXXX XXXX"
 msgstr ""
 
-#: app/templates/partials/password_result.html:172
-#: app/templates/partials/password_result.html:178
+#: app/templates/partials/password_result.html:180
+#: app/templates/partials/password_result.html:186
 msgid "sem caracteres ambíguos"
 msgstr ""
 

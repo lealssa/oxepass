@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-18 15:24-0300\n"
+"POT-Creation-Date: 2026-03-18 17:26-0300\n"
 "PO-Revision-Date: 2026-03-18 15:24-0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,159 +18,206 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/app.py:137 app/app.py:143
+#: app/app.py:136
+msgid "instantâneo"
+msgstr "instant"
+
+#: app/app.py:138
+msgid "alguns segundos"
+msgstr "a few seconds"
+
+#: app/app.py:141
+msgid "minutos"
+msgstr "minutes"
+
+#: app/app.py:144
+msgid "horas"
+msgstr "hours"
+
+#: app/app.py:147
+msgid "dias"
+msgstr "days"
+
+#: app/app.py:150
+msgid "anos"
+msgstr "years"
+
+#: app/app.py:153
+#, python-format
+msgid "%(n)s mil anos"
+msgstr "%(n)s thousand years"
+
+#: app/app.py:156
+#, python-format
+msgid "%(n)s milhões de anos"
+msgstr "%(n)s million years"
+
+#: app/app.py:159
+msgid "trilhões de anos"
+msgstr "trillions of years"
+
+#: app/app.py:161
+msgid "bilhões de anos"
+msgstr "billions of years"
+
+#: app/app.py:162
+#, python-format
+msgid "%(n)s bilhões de anos"
+msgstr "%(n)s billion years"
+
+#: app/app.py:170
 msgid "Muito Fraca"
 msgstr "Very Weak"
 
-#: app/app.py:138
+#: app/app.py:171
 msgid "Fraca"
 msgstr "Weak"
 
-#: app/app.py:139
+#: app/app.py:172
 msgid "Moderada"
 msgstr "Moderate"
 
-#: app/app.py:140
+#: app/app.py:173
 msgid "Forte"
 msgstr "Strong"
 
-#: app/app.py:141
+#: app/app.py:174
 msgid "Muito Forte"
 msgstr "Very Strong"
 
-#: app/app.py:188
+#: app/app.py:244
 msgid "senha"
 msgstr "password"
 
-#: app/app.py:189
+#: app/app.py:245
 msgid "senhas"
 msgstr "passwords"
 
-#: app/app.py:190
+#: app/app.py:246
 msgid "Gerar"
 msgstr "Generate"
 
-#: app/app.py:191
+#: app/app.py:247
 msgid "Gerar Senha"
 msgstr "Generate Password"
 
-#: app/app.py:192
+#: app/app.py:248
 msgid "Gerar Senha Memorizável"
 msgstr "Generate Memorable Password"
 
-#: app/app.py:193
+#: app/app.py:249
 msgid "Gerar Código de Backup"
 msgstr "Generate Backup Code"
 
-#: app/app.py:194 app/templates/partials/password_result.html:6
+#: app/app.py:250 app/templates/partials/password_result.html:6
 msgid "senhas geradas"
 msgstr "passwords generated"
 
-#: app/app.py:195 app/templates/partials/password_result.html:6
+#: app/app.py:251 app/templates/partials/password_result.html:6
 msgid "Sua senha gerada"
 msgstr "Your generated password"
 
-#: app/app.py:197
+#: app/app.py:253
 msgid "Pessoal"
 msgstr "Personal"
 
-#: app/app.py:197
+#: app/app.py:253
 msgid "uso diário"
 msgstr "daily use"
 
-#: app/app.py:198
+#: app/app.py:254
 msgid "Wi-Fi"
 msgstr "Wi-Fi"
 
-#: app/app.py:198
+#: app/app.py:254
 msgid "redes domésticas"
 msgstr "home networks"
 
-#: app/app.py:199
+#: app/app.py:255
 msgid "Memorizável"
 msgstr "Memorable"
 
-#: app/app.py:199 app/templates/index.html:396
+#: app/app.py:255 app/templates/index.html:396
 msgid "fácil de lembrar"
 msgstr "easy to remember"
 
-#: app/app.py:200
+#: app/app.py:256
 msgid "PIN"
 msgstr "PIN"
 
-#: app/app.py:200
+#: app/app.py:256
 msgid "desbloqueio"
 msgstr "unlock"
 
-#: app/app.py:201
+#: app/app.py:257
 msgid "Sênior"
 msgstr "Senior"
 
-#: app/app.py:201
+#: app/app.py:257
 msgid "fácil de ler"
 msgstr "easy to read"
 
-#: app/app.py:202
+#: app/app.py:258
 msgid "Backup"
 msgstr "Backup"
 
-#: app/app.py:202
+#: app/app.py:258
 msgid "recuperação"
 msgstr "recovery"
 
-#: app/app.py:203
+#: app/app.py:259
 msgid "Corporativo"
 msgstr "Corporate"
 
-#: app/app.py:203
+#: app/app.py:259
 msgid "política de TI"
 msgstr "IT policy"
 
-#: app/app.py:204
+#: app/app.py:260
 msgid "Master"
 msgstr "Master"
 
-#: app/app.py:204
+#: app/app.py:260
 msgid "cofre de senhas"
 msgstr "password vault"
 
-#: app/app.py:205
+#: app/app.py:261
 msgid "Legado"
 msgstr "Legacy"
 
-#: app/app.py:205
+#: app/app.py:261
 msgid "sistemas antigos"
 msgstr "legacy systems"
 
-#: app/app.py:206
+#: app/app.py:262
 msgid "API Key"
 msgstr "API Key"
 
-#: app/app.py:206
+#: app/app.py:262
 msgid "integrações"
 msgstr "integrations"
 
-#: app/app.py:207
+#: app/app.py:263
 msgid "Token"
 msgstr "Token"
 
-#: app/app.py:207
+#: app/app.py:263
 msgid "acesso a APIs"
 msgstr "API access"
 
-#: app/app.py:208
+#: app/app.py:264
 msgid "Shell-safe"
 msgstr "Shell-safe"
 
-#: app/app.py:208
+#: app/app.py:264
 msgid "terminais bash"
 msgstr "bash terminals"
 
-#: app/app.py:209
+#: app/app.py:265
 msgid "URL-safe"
 msgstr "URL-safe"
 
-#: app/app.py:209
+#: app/app.py:265
 msgid "configs e variáveis"
 msgstr "configs & variables"
 
@@ -185,8 +232,8 @@ msgid ""
 "memoráveis, para Wi-Fi, PIN, API e muito mais. Suas senhas são geradas "
 "localmente e nunca saem do servidor."
 msgstr ""
-"Free online secure password generator. Create strong, memorable passwords "
-"for Wi-Fi, PIN, API and more. Your passwords are generated locally and "
+"Free online secure password generator. Create strong, memorable passwords"
+" for Wi-Fi, PIN, API and more. Your passwords are generated locally and "
 "never leave the server."
 
 #: app/templates/base.html:24
@@ -205,15 +252,15 @@ msgstr ""
 "Generate strong, secure passwords for free. Your passwords never leave "
 "the server."
 
-#: app/templates/base.html:97
+#: app/templates/base.html:111
 msgid "Gerado localmente — suas senhas nunca saem do servidor."
 msgstr "Generated locally — your passwords never leave the server."
 
-#: app/templates/base.html:99
+#: app/templates/base.html:113
 msgid "Política de Privacidade"
 msgstr "Privacy Policy"
 
-#: app/templates/base.html:101
+#: app/templates/base.html:115
 msgid "Termos de Uso"
 msgstr "Terms of Use"
 
@@ -280,12 +327,12 @@ msgstr "What is the difference between a strong password and a memorable passwor
 #: app/templates/index.html:42
 msgid ""
 "Uma senha forte prioriza máxima entropia com caracteres aleatórios. Uma "
-"senha memorizável combina três palavras em português com um número e "
-"separador, sendo segura e possível de lembrar sem anotações."
+"senha memorizável combina três palavras com um número e separador, sendo "
+"segura e possível de lembrar sem anotações."
 msgstr ""
 "A strong password prioritizes maximum entropy with random characters. A "
-"memorable password combines three Portuguese words with a number and "
-"separator, making it secure yet possible to remember without notes."
+"memorable password combines three words with a number and separator, making "
+"it secure yet possible to remember without notes."
 
 #: app/templates/index.html:46 app/templates/index.html:639
 msgid "Por que não devo usar a mesma senha em sites diferentes?"
@@ -298,8 +345,8 @@ msgid ""
 "compromete todas as suas contas."
 msgstr ""
 "In data breaches, exposed passwords are automatically tested on other "
-"websites. If you reuse the same password, a single breach compromises "
-"all of your accounts."
+"websites. If you reuse the same password, a single breach compromises all"
+" of your accounts."
 
 #: app/templates/index.html:51 app/templates/index.html:649
 msgid "Posso gerar várias senhas de uma vez?"
@@ -310,8 +357,8 @@ msgid ""
 "Sim. O seletor de quantidade permite gerar 1, 3, 5 ou 10 senhas "
 "simultaneamente. Você também pode baixar todas em um arquivo .txt."
 msgstr ""
-"Yes. The quantity selector lets you generate 1, 3, 5 or 10 passwords "
-"at once. You can also download them all in a .txt file."
+"Yes. The quantity selector lets you generate 1, 3, 5 or 10 passwords at "
+"once. You can also download them all in a .txt file."
 
 #: app/templates/index.html:130
 msgid "Gerador de Senhas"
@@ -326,8 +373,8 @@ msgid ""
 "Crie senhas fortes para Wi-Fi, PIN, redes sociais, trabalho e muito mais "
 "— tudo gerado localmente, sem armazenar nada."
 msgstr ""
-"Create strong passwords for Wi-Fi, PIN, social media, work and more "
-"— all generated locally, without storing anything."
+"Create strong passwords for Wi-Fi, PIN, social media, work and more — all"
+" generated locally, without storing anything."
 
 #: app/templates/index.html:138
 msgid "Perfis rápidos"
@@ -341,19 +388,19 @@ msgstr "Password Length"
 msgid "Complexidade"
 msgstr "Complexity"
 
-#: app/templates/index.html:284 app/templates/partials/password_result.html:142
+#: app/templates/index.html:284 app/templates/partials/password_result.html:156
 msgid "Maiúsculas"
 msgstr "Uppercase"
 
-#: app/templates/index.html:306 app/templates/partials/password_result.html:148
+#: app/templates/index.html:306 app/templates/partials/password_result.html:162
 msgid "Minúsculas"
 msgstr "Lowercase"
 
-#: app/templates/index.html:328 app/templates/partials/password_result.html:154
+#: app/templates/index.html:328 app/templates/partials/password_result.html:168
 msgid "Números"
 msgstr "Numbers"
 
-#: app/templates/index.html:350 app/templates/partials/password_result.html:160
+#: app/templates/index.html:350 app/templates/partials/password_result.html:174
 msgid "Símbolos"
 msgstr "Symbols"
 
@@ -366,8 +413,8 @@ msgid "Senha Memorizável"
 msgstr "Memorable Password"
 
 #: app/templates/index.html:396
-msgid "3 palavras em português + número —"
-msgstr "3 Portuguese words + number —"
+msgid "3 palavras + número —"
+msgstr "3 words + number —"
 
 #: app/templates/index.html:396
 msgid ", difícil de adivinhar."
@@ -408,8 +455,8 @@ msgid ""
 " e caracteres a evitar."
 msgstr ""
 "Choose from 13 ready-made profiles — personal, Wi-Fi, corporate, "
-"memorable and more — or manually configure the length, complexity "
-"and characters to avoid."
+"memorable and more — or manually configure the length, complexity and "
+"characters to avoid."
 
 #: app/templates/index.html:499
 msgid "2. Gere com um clique"
@@ -421,8 +468,8 @@ msgid ""
 " usando geração aleatória criptograficamente segura. Você pode gerar até "
 "10 senhas de uma vez."
 msgstr ""
-"Click \"Generate Password\" and your password is created instantly on "
-"the server using cryptographically secure random generation. You can "
+"Click \"Generate Password\" and your password is created instantly on the"
+" server using cryptographically secure random generation. You can "
 "generate up to 10 passwords at once."
 
 #: app/templates/index.html:510
@@ -451,9 +498,9 @@ msgid ""
 "após o envio ao navegador. Não há banco de dados, logs ou histórico de "
 "senhas geradas."
 msgstr ""
-"Passwords are generated at the moment you click and discarded immediately "
-"after being sent to your browser. There are no databases, logs or history "
-"of generated passwords."
+"Passwords are generated at the moment you click and discarded immediately"
+" after being sent to your browser. There are no databases, logs or "
+"history of generated passwords."
 
 #: app/templates/index.html:539
 msgid "Sem rastreamento"
@@ -495,8 +542,8 @@ msgid ""
 " ou mais."
 msgstr ""
 "Each additional character exponentially increases the time needed to "
-"crack the password by brute force. For important accounts, prefer 16 "
-"or more."
+"crack the password by brute force. For important accounts, prefer 16 or "
+"more."
 
 #: app/templates/index.html:571
 msgid "Nunca reutilize senhas"
@@ -508,9 +555,8 @@ msgid ""
 "ficam expostas. Use uma senha única e diferente para cada serviço ou "
 "site."
 msgstr ""
-"If a service leaks your data, all accounts using the same password "
-"become exposed. Use a unique, different password for each service or "
-"website."
+"If a service leaks your data, all accounts using the same password become"
+" exposed. Use a unique, different password for each service or website."
 
 #: app/templates/index.html:578
 msgid "Use um gerenciador de senhas"
@@ -535,8 +581,8 @@ msgid ""
 "fator — geralmente um código temporário gerado no celular ou por e-mail."
 msgstr ""
 "Even if your password is discovered, 2FA prevents access without the "
-"second factor — usually a temporary code generated on your phone or "
-"via email."
+"second factor — usually a temporary code generated on your phone or via "
+"email."
 
 #: app/templates/index.html:594
 msgid "Perguntas Frequentes"
@@ -548,9 +594,9 @@ msgid ""
 "e-mail, banco ou gerenciador de senhas — use 16 caracteres ou mais, "
 "combinando letras maiúsculas, minúsculas, números e símbolos."
 msgstr ""
-"The minimum recommended length is 12 characters. For important accounts "
-"— such as email, banking or password managers — use 16 characters or "
-"more, combining uppercase letters, lowercase letters, numbers and symbols."
+"The minimum recommended length is 12 characters. For important accounts —"
+" such as email, banking or password managers — use 16 characters or more,"
+" combining uppercase letters, lowercase letters, numbers and symbols."
 
 #: app/templates/index.html:624
 msgid ""
@@ -568,13 +614,13 @@ msgstr ""
 msgid ""
 "Uma senha forte prioriza máxima entropia com caracteres aleatórios — "
 "ideal para contas críticas armazenadas em gerenciadores. Uma senha "
-"memorizável combina três palavras em português com um número e separador,"
-" sendo segura o suficiente e possível de lembrar sem anotações."
+"memorizável combina três palavras com um número e separador, sendo segura"
+" o suficiente e possível de lembrar sem anotações."
 msgstr ""
 "A strong password prioritizes maximum entropy with random characters — "
 "ideal for critical accounts stored in password managers. A memorable "
-"password combines three Portuguese words with a number and separator, "
-"making it secure enough and possible to remember without notes."
+"password combines three words with a number and separator, making it "
+"secure enough and possible to remember without notes."
 
 #: app/templates/index.html:644
 msgid ""
@@ -594,45 +640,57 @@ msgid ""
 "simultaneamente. Útil para criar senhas para múltiplos usuários ou "
 "serviços de uma só vez. Você também pode baixar todas em um arquivo .txt."
 msgstr ""
-"Yes. The quantity selector lets you generate 1, 3, 5 or 10 passwords "
-"at once. Useful for creating passwords for multiple users or services "
-"at the same time. You can also download them all in a .txt file."
+"Yes. The quantity selector lets you generate 1, 3, 5 or 10 passwords at "
+"once. Useful for creating passwords for multiple users or services at the"
+" same time. You can also download them all in a .txt file."
 
-#: app/templates/privacy.html:96 app/templates/privacy_en.html:96
-#: app/templates/privacy_es.html:96 app/templates/terms.html:110
+#: app/templates/methodology_en.html:120 app/templates/methodology_es.html:120
+#: app/templates/methodology_pt.html:120 app/templates/privacy.html:96
+#: app/templates/privacy_en.html:96 app/templates/privacy_es.html:96
+#: app/templates/privacy_pt.html:96 app/templates/terms.html:110
 #: app/templates/terms_en.html:110 app/templates/terms_es.html:110
+#: app/templates/terms_pt.html:110
 msgid "Voltar ao gerador"
 msgstr "Back to generator"
 
-#: app/templates/partials/password_result.html:21
+#: app/templates/partials/password_result.html:22
 msgid "Baixar .txt"
 msgstr "Download .txt"
 
-#: app/templates/partials/password_result.html:40
+#: app/templates/partials/password_result.html:41
 msgid "Copiar"
 msgstr "Copy"
 
-#: app/templates/partials/password_result.html:99
+#: app/templates/partials/password_result.html:101
 msgid "Copiado para a área de transferência!"
 msgstr "Copied to clipboard!"
 
-#: app/templates/partials/password_result.html:106
+#: app/templates/partials/password_result.html:108
 msgid "Força da senha"
 msgstr "Password strength"
 
-#: app/templates/partials/password_result.html:127
+#: app/templates/partials/password_result.html:121
+msgid "Tempo para quebrar:"
+msgstr "Time to crack:"
+
+#: app/templates/partials/password_result.html:125
+msgid "Como medimos?"
+msgstr "How do we measure?"
+
+#: app/templates/partials/password_result.html:141
 msgid "Fácil de memorizar"
 msgstr "Easy to memorize"
 
-#: app/templates/partials/password_result.html:131
+#: app/templates/partials/password_result.html:145
 msgid "3 palavras + número"
 msgstr "3 words + number"
 
-#: app/templates/partials/password_result.html:136
+#: app/templates/partials/password_result.html:150
 msgid "8 dígitos · formato XXXX XXXX"
 msgstr "8 digits · format XXXX XXXX"
 
-#: app/templates/partials/password_result.html:166
-#: app/templates/partials/password_result.html:172
+#: app/templates/partials/password_result.html:180
+#: app/templates/partials/password_result.html:186
 msgid "sem caracteres ambíguos"
 msgstr "no ambiguous characters"
+
