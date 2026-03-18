@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@source "../../app/templates/**/*.html";
+@source "../../templates/**/*.html";
 
 /* ── Custom theme ── */
 @theme {

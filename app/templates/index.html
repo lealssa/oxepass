@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}OxePass — Gerador de Senhas Seguras e Gratuito{% endblock %}
+{% block title %}OxePass — {{ _('Gerador de Senhas Seguras e Gratuito') }}{% endblock %}
 
 {% block extra_head %}
 <script type="application/ld+json">
@@ -9,11 +9,11 @@
   "@type": "WebApplication",
   "name": "OxePass",
   "url": "https://oxepass.com/",
-  "description": "Gerador de senhas seguras e gratuito com 13 perfis prontos: Wi-Fi, PIN, corporativo, memorizável, shell-safe e mais. Senhas geradas localmente, sem armazenamento.",
+  "description": "{{ _('Gerador de senhas seguras e gratuito com 13 perfis prontos: Wi-Fi, PIN, corporativo, memorizável, shell-safe e mais. Senhas geradas localmente, sem armazenamento.') }}",
   "applicationCategory": "SecurityApplication",
   "operatingSystem": "Web",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
-  "inLanguage": "pt-BR"
+  "inLanguage": "{{ lang_code }}"
 }
 </script>
 <script type="application/ld+json">
@@ -23,33 +23,33 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "O OxePass armazena ou registra minhas senhas?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Não. As senhas são geradas no servidor no momento do clique e descartadas imediatamente após o envio ao navegador. Não existem logs, banco de dados ou qualquer forma de armazenamento." }
+      "name": "{{ _('O OxePass armazena ou registra minhas senhas?') }}",
+      "acceptedAnswer": { "@type": "Answer", "text": "{{ _('Não. As senhas são geradas no servidor no momento do clique e descartadas imediatamente após o envio ao navegador. Não existem logs, banco de dados ou qualquer forma de armazenamento.') }}" }
     },
     {
       "@type": "Question",
-      "name": "Qual o tamanho mínimo recomendado para uma senha forte?",
-      "acceptedAnswer": { "@type": "Answer", "text": "O mínimo recomendado é 12 caracteres. Para contas importantes use 16 caracteres ou mais, combinando letras maiúsculas, minúsculas, números e símbolos." }
+      "name": "{{ _('Qual o tamanho mínimo recomendado para uma senha forte?') }}",
+      "acceptedAnswer": { "@type": "Answer", "text": "{{ _('O mínimo recomendado é 12 caracteres. Para contas importantes use 16 caracteres ou mais, combinando letras maiúsculas, minúsculas, números e símbolos.') }}" }
     },
     {
       "@type": "Question",
-      "name": "O que são caracteres ambíguos e por que evitá-los?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Caracteres ambíguos são visualmente parecidos, como o número 0 e a letra O, ou o número 1 com as letras l e I. Evitá-los reduz erros ao digitar manualmente, como em redes Wi-Fi." }
+      "name": "{{ _('O que são caracteres ambíguos e por que evitá-los?') }}",
+      "acceptedAnswer": { "@type": "Answer", "text": "{{ _('Caracteres ambíguos são visualmente parecidos, como o número 0 e a letra O, ou o número 1 com as letras l e I. Evitá-los reduz erros ao digitar manualmente, como em redes Wi-Fi.') }}" }
     },
     {
       "@type": "Question",
-      "name": "Qual a diferença entre senha forte e senha memorizável?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Uma senha forte prioriza máxima entropia com caracteres aleatórios. Uma senha memorizável combina três palavras em português com um número e separador, sendo segura e possível de lembrar sem anotações." }
+      "name": "{{ _('Qual a diferença entre senha forte e senha memorizável?') }}",
+      "acceptedAnswer": { "@type": "Answer", "text": "{{ _('Uma senha forte prioriza máxima entropia com caracteres aleatórios. Uma senha memorizável combina três palavras em português com um número e separador, sendo segura e possível de lembrar sem anotações.') }}" }
     },
     {
       "@type": "Question",
-      "name": "Por que não devo usar a mesma senha em sites diferentes?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Em vazamentos de dados, as senhas expostas são testadas automaticamente em outros sites. Se você reutilizar a mesma senha, uma única brecha compromete todas as suas contas." }
+      "name": "{{ _('Por que não devo usar a mesma senha em sites diferentes?') }}",
+      "acceptedAnswer": { "@type": "Answer", "text": "{{ _('Em vazamentos de dados, as senhas expostas são testadas automaticamente em outros sites. Se você reutilizar a mesma senha, uma única brecha compromete todas as suas contas.') }}" }
     },
     {
       "@type": "Question",
-      "name": "Posso gerar várias senhas de uma vez?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sim. O seletor de quantidade permite gerar 1, 3, 5 ou 10 senhas simultaneamente. Você também pode baixar todas em um arquivo .txt." }
+      "name": "{{ _('Posso gerar várias senhas de uma vez?') }}",
+      "acceptedAnswer": { "@type": "Answer", "text": "{{ _('Sim. O seletor de quantidade permite gerar 1, 3, 5 ou 10 senhas simultaneamente. Você também pode baixar todas em um arquivo .txt.') }}" }
     }
   ]
 }
@@ -69,6 +69,7 @@
        pwType: 'random',
        count: 1,
        exclude: '',
+       langCode: '{{ lang_code }}',
        get rangePct() { return ((this.length - 4) / (64 - 4)) * 100 + '%' },
        syncSlider() {
          const el = document.querySelector('#length-range');
@@ -92,35 +93,49 @@
        },
        get showControls() { return this.pwType !== 'memorable' && this.pwType !== 'backup' },
        get showExclude()  { return this.showControls },
+       get generateUrl() {
+         return this.langCode === 'en' ? '/generate' : '/' + this.langCode + '/generate';
+       },
+       presetLabel(id) { return window.I18N.presets[id]?.label || id; },
+       presetDesc(id)  { return window.I18N.presets[id]?.desc || ''; },
+       btnText() {
+         if (this.count > 1) return window.I18N.gerar + ' ' + this.count + ' ' + window.I18N.senhas;
+         if (this.pwType === 'memorable') return window.I18N.gerar_memoravel;
+         if (this.pwType === 'backup') return window.I18N.gerar_backup;
+         return window.I18N.gerar_senha;
+       },
+       countLabel(n) {
+         return n + ' ' + (n === 1 ? window.I18N.senha : window.I18N.senhas);
+       },
        presets: [
-         { id:'personal',   label:'Pessoal',     desc:'uso diário',        length:16, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'user',     color:'indigo',  type:'random'    },
-         { id:'wifi',       label:'Wi-Fi',       desc:'redes domésticas',  length:20, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'wifi',     color:'sky',     type:'wifi'      },
-         { id:'memorable',  label:'Memorizável', desc:'fácil de lembrar',  length:0,  uppercase:false, lowercase:false, numbers:false, symbols:false, icon:'brain',    color:'rose',    type:'memorable' },
-         { id:'pin',        label:'PIN',         desc:'desbloqueio',       length:6,  uppercase:false, lowercase:false, numbers:true,  symbols:false, icon:'pin',      color:'amber',   type:'random'    },
-         { id:'elderly',    label:'Sênior',      desc:'fácil de ler',      length:10, uppercase:true,  lowercase:false, numbers:true,  symbols:false, icon:'heart',    color:'pink',    type:'elderly'   },
-         { id:'backup',     label:'Backup',      desc:'recuperação',       length:0,  uppercase:false, lowercase:false, numbers:true,  symbols:false, icon:'refresh',  color:'teal',    type:'backup'    },
-         { id:'corporate',  label:'Corporativo', desc:'política de TI',    length:12, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'building', color:'slate',   type:'random'    },
-         { id:'master',     label:'Master',      desc:'cofre de senhas',   length:24, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'shield',   color:'emerald', type:'random'    },
-         { id:'legacy',     label:'Legado',      desc:'sistemas antigos',  length:12, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'archive',  color:'slate',   type:'random'    },
-         { id:'apikey',     label:'API Key',     desc:'integrações',       length:32, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'code',     color:'violet',  type:'random'    },
-         { id:'token',      label:'Token',       desc:'acesso a APIs',     length:48, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'key',      color:'violet',  type:'random'    },
-         { id:'shell',      label:'Shell-safe',  desc:'terminais bash',    length:20, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'terminal', color:'orange',  type:'shell'     },
-         { id:'url',        label:'URL-safe',    desc:'configs e variáveis',length:20, uppercase:true, lowercase:true,  numbers:true,  symbols:true,  icon:'link',     color:'cyan',    type:'url'       }
+         { id:'personal',   length:16, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'user',     color:'indigo',  type:'random'    },
+         { id:'wifi',       length:20, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'wifi',     color:'sky',     type:'wifi'      },
+         { id:'memorable',  length:0,  uppercase:false, lowercase:false, numbers:false, symbols:false, icon:'brain',    color:'rose',    type:'memorable' },
+         { id:'pin',        length:6,  uppercase:false, lowercase:false, numbers:true,  symbols:false, icon:'pin',      color:'amber',   type:'random'    },
+         { id:'elderly',    length:10, uppercase:true,  lowercase:false, numbers:true,  symbols:false, icon:'heart',    color:'pink',    type:'elderly'   },
+         { id:'backup',     length:0,  uppercase:false, lowercase:false, numbers:true,  symbols:false, icon:'refresh',  color:'teal',    type:'backup'    },
+         { id:'corporate',  length:12, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'building', color:'slate',   type:'random'    },
+         { id:'master',     length:24, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'shield',   color:'emerald', type:'random'    },
+         { id:'legacy',     length:12, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'archive',  color:'slate',   type:'random'    },
+         { id:'apikey',     length:32, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'code',     color:'violet',  type:'random'    },
+         { id:'token',      length:48, uppercase:true,  lowercase:true,  numbers:true,  symbols:false, icon:'key',      color:'violet',  type:'random'    },
+         { id:'shell',      length:20, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'terminal', color:'orange',  type:'shell'     },
+         { id:'url',        length:20, uppercase:true,  lowercase:true,  numbers:true,  symbols:true,  icon:'link',     color:'cyan',    type:'url'       }
        ]
      }" x-init="$nextTick(() => syncSlider())">
 
   <!-- Hero -->
   <div class="text-center mb-8 animate-fade-in">
     <h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-2 text-slate-800">
-      Gerador de Senhas
-      <span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Seguras e Gratuito</span>
+      {{ _('Gerador de Senhas') }}
+      <span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">{{ _('Seguras e Gratuito') }}</span>
     </h1>
-    <p class="text-slate-500 text-sm">Crie senhas fortes para Wi-Fi, PIN, redes sociais, trabalho e muito mais — tudo gerado localmente, sem armazenar nada.</p>
+    <p class="text-slate-500 text-sm">{{ _('Crie senhas fortes para Wi-Fi, PIN, redes sociais, trabalho e muito mais — tudo gerado localmente, sem armazenar nada.') }}</p>
   </div>
 
   <!-- ── PRESETS ── -->
   <div class="mb-4 animate-fade-in">
-    <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Perfis rápidos</p>
+    <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">{{ _('Perfis rápidos') }}</p>
     <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
       <template x-for="p in presets" :key="p.id">
         <button type="button" @click="applyPreset(p)" :class="{
@@ -214,8 +229,8 @@
           </div>
 
           <div class="text-center">
-            <div class="text-[11px] font-semibold text-slate-700 leading-tight" x-text="p.label"></div>
-            <div class="text-[10px] text-slate-400 mt-0.5 leading-tight" x-text="p.desc"></div>
+            <div class="text-[11px] font-semibold text-slate-700 leading-tight" x-text="presetLabel(p.id)"></div>
+            <div class="text-[10px] text-slate-400 mt-0.5 leading-tight" x-text="presetDesc(p.id)"></div>
           </div>
 
           <div x-show="activePreset===p.id" class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full"
@@ -232,7 +247,7 @@
     <!-- Slider -->
     <div class="space-y-4" x-show="showControls" x-transition>
       <div class="flex items-center justify-between">
-        <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest">Tamanho da Senha</label>
+        <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest">{{ _('Tamanho da Senha') }}</label>
         <div class="flex items-center gap-1.5">
           <span class="text-2xl font-bold font-mono text-indigo-600 tabular-nums w-10 text-right"
             x-text="length"></span>
@@ -254,7 +269,7 @@
 
     <!-- Complexity -->
     <div class="space-y-3" x-show="showControls" x-transition>
-      <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest block">Complexidade</label>
+      <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest block">{{ _('Complexidade') }}</label>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
 
         <button type="button" @click="uppercase = !uppercase; activePreset = null; pwType = 'random'"
@@ -266,7 +281,7 @@
           </div>
           <div class="min-w-0">
             <div :class="uppercase ? 'text-slate-800' : 'text-slate-400'"
-              class="text-sm font-semibold transition-colors">Maiúsculas</div>
+              class="text-sm font-semibold transition-colors">{{ _('Maiúsculas') }}</div>
             <div class="text-xs text-slate-400 font-mono">A–Z</div>
           </div>
           <div class="ml-auto flex-shrink-0">
@@ -288,7 +303,7 @@
           </div>
           <div class="min-w-0">
             <div :class="lowercase ? 'text-slate-800' : 'text-slate-400'"
-              class="text-sm font-semibold transition-colors">Minúsculas</div>
+              class="text-sm font-semibold transition-colors">{{ _('Minúsculas') }}</div>
             <div class="text-xs text-slate-400 font-mono">a–z</div>
           </div>
           <div class="ml-auto flex-shrink-0">
@@ -310,7 +325,7 @@
           </div>
           <div class="min-w-0">
             <div :class="numbers ? 'text-slate-800' : 'text-slate-400'" class="text-sm font-semibold transition-colors">
-              Números</div>
+              {{ _('Números') }}</div>
             <div class="text-xs text-slate-400 font-mono">0–9</div>
           </div>
           <div class="ml-auto flex-shrink-0">
@@ -332,7 +347,7 @@
           </div>
           <div class="min-w-0">
             <div :class="symbols ? 'text-slate-800' : 'text-slate-400'" class="text-sm font-semibold transition-colors">
-              Símbolos</div>
+              {{ _('Símbolos') }}</div>
             <div class="text-xs text-slate-400 font-mono">!@#$%</div>
           </div>
           <div class="ml-auto flex-shrink-0">
@@ -350,7 +365,7 @@
 
     <!-- Exclude characters -->
     <div x-show="showExclude" x-transition class="space-y-2">
-      <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest block">Excluir Caracteres</label>
+      <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest block">{{ _('Excluir Caracteres') }}</label>
       <div class="relative">
         <input type="text" x-model="exclude" placeholder='ex: 0 O l 1 " &apos;' class="w-full px-4 py-2.5 text-sm font-mono rounded-xl border border-slate-200
                       bg-white text-slate-700 placeholder-slate-300
@@ -376,10 +391,9 @@
         </svg>
       </div>
       <div>
-        <p class="text-sm font-semibold text-indigo-700 mb-0.5">Senha Memorizável</p>
+        <p class="text-sm font-semibold text-indigo-700 mb-0.5">{{ _('Senha Memorizável') }}</p>
         <p class="text-xs text-indigo-400 leading-relaxed">
-          3 palavras em português + número — <span class="font-medium text-indigo-500">fácil de lembrar</span>, difícil
-          de adivinhar.
+          {{ _('3 palavras em português + número —') }} <span class="font-medium text-indigo-500">{{ _('fácil de lembrar') }}</span>{{ _(', difícil de adivinhar.') }}
         </p>
       </div>
     </div>
@@ -394,10 +408,9 @@
         </svg>
       </div>
       <div>
-        <p class="text-sm font-semibold text-teal-700 mb-0.5">Código de Backup</p>
+        <p class="text-sm font-semibold text-teal-700 mb-0.5">{{ _('Código de Backup') }}</p>
         <p class="text-xs text-teal-500 leading-relaxed">
-          Código numérico de <span class="font-medium text-teal-600">8 dígitos</span> para recuperação de conta, no
-          formato <span class="font-mono font-medium text-teal-600">XXXX XXXX</span>.
+          {{ _('Código numérico de') }} <span class="font-medium text-teal-600">{{ _('8 dígitos') }}</span> {{ _('para recuperação de conta, no formato') }} <span class="font-mono font-medium text-teal-600">XXXX XXXX</span>.
         </p>
       </div>
     </div>
@@ -407,20 +420,20 @@
 
     <!-- Quantity selector -->
     <div class="space-y-2">
-      <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest block">Quantidade de senhas</label>
+      <label class="text-xs font-semibold text-slate-500 uppercase tracking-widest block">{{ _('Quantidade de senhas') }}</label>
       <div class="flex bg-slate-100 rounded-xl p-1 gap-1">
         <template x-for="n in [1, 3, 5, 10]" :key="n">
           <button type="button" @click="count = n"
             :class="count === n ? 'bg-white text-indigo-600 shadow-sm font-bold' : 'text-slate-500 hover:text-slate-700'"
             class="flex-1 py-2 rounded-lg text-sm font-semibold transition-all"
-            x-text="n + (n === 1 ? ' senha' : ' senhas')">
+            x-text="countLabel(n)">
           </button>
         </template>
       </div>
     </div>
 
     <!-- Generate button -->
-    <button id="generate-btn" hx-post="/generate" hx-target="#result-area" hx-swap="innerHTML transition:true"
+    <button id="generate-btn" :hx-post="generateUrl" hx-target="#result-area" hx-swap="innerHTML transition:true"
       hx-include="[name]" hx-indicator="#spinner" class="w-full relative overflow-hidden py-4 px-6 rounded-xl font-semibold text-base tracking-wide text-white
              bg-gradient-to-r from-indigo-600 to-violet-600
              hover:from-indigo-500 hover:to-violet-500
@@ -449,8 +462,7 @@
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
-      <span
-        x-text="count > 1 ? 'Gerar ' + count + ' Senhas' : (pwType === 'memorable' ? 'Gerar Senha Memorizável' : pwType === 'backup' ? 'Gerar Código de Backup' : 'Gerar Senha')"></span>
+      <span x-text="btnText()"></span>
     </button>
 
   </div>
@@ -463,8 +475,8 @@
 <div class="w-full max-w-lg sm:max-w-3xl mx-auto mt-20 space-y-16">
 
   <!-- Como funciona -->
-  <section aria-labelledby="como-funciona">
-    <h2 id="como-funciona" class="text-xl font-bold text-slate-800 mb-6 text-center">Como funciona o OxePass</h2>
+  <section>
+    <h2 class="text-xl font-bold text-slate-800 mb-6 text-center">{{ _('Como funciona o OxePass') }}</h2>
     <div class="card rounded-2xl divide-y divide-slate-100">
       <div class="flex items-start gap-4 p-5">
         <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0">
@@ -473,8 +485,8 @@
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">1. Escolha um perfil</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Selecione entre 13 perfis prontos — pessoal, Wi-Fi, corporativo, memorizável e mais — ou configure manualmente o comprimento, complexidade e caracteres a evitar.</p>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('1. Escolha um perfil') }}</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Selecione entre 13 perfis prontos — pessoal, Wi-Fi, corporativo, memorizável e mais — ou configure manualmente o comprimento, complexidade e caracteres a evitar.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
@@ -484,8 +496,8 @@
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">2. Gere com um clique</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Clique em "Gerar Senha" e a senha é criada instantaneamente no servidor usando geração aleatória criptograficamente segura. Você pode gerar até 10 senhas de uma vez.</p>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('2. Gere com um clique') }}</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Clique em "Gerar Senha" e a senha é criada instantaneamente no servidor usando geração aleatória criptograficamente segura. Você pode gerar até 10 senhas de uma vez.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
@@ -495,16 +507,16 @@
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">3. Copie com segurança</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Copie a senha com um clique ou baixe todas em um arquivo .txt. A senha nunca é salva, registrada ou transmitida para terceiros.</p>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('3. Copie com segurança') }}</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Copie a senha com um clique ou baixe todas em um arquivo .txt. A senha nunca é salva, registrada ou transmitida para terceiros.') }}</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Por que é seguro -->
-  <section aria-labelledby="por-que-seguro">
-    <h2 id="por-que-seguro" class="text-xl font-bold text-slate-800 mb-6 text-center">Por que o OxePass é seguro</h2>
+  <section>
+    <h2 class="text-xl font-bold text-slate-800 mb-6 text-center">{{ _('Por que o OxePass é seguro') }}</h2>
     <div class="card rounded-2xl divide-y divide-slate-100">
       <div class="flex items-start gap-4 p-5">
         <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0">
@@ -513,8 +525,8 @@
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">Sem armazenamento</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">As senhas são geradas no momento do clique e descartadas imediatamente após o envio ao navegador. Não há banco de dados, logs ou histórico de senhas geradas.</p>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Sem armazenamento') }}</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">{{ _('As senhas são geradas no momento do clique e descartadas imediatamente após o envio ao navegador. Não há banco de dados, logs ou histórico de senhas geradas.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
@@ -524,8 +536,8 @@
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">Sem rastreamento</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Não usamos cookies de rastreamento, scripts de anúncios ou ferramentas de analytics que coletam dados pessoais. Sua privacidade é prioridade absoluta.</p>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Sem rastreamento') }}</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Não usamos cookies de rastreamento, scripts de anúncios ou ferramentas de analytics que coletam dados pessoais. Sua privacidade é prioridade absoluta.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
@@ -535,111 +547,111 @@
           </svg>
         </div>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">Geração criptograficamente segura</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Utilizamos o módulo <code class="font-mono bg-slate-100 px-1 rounded text-slate-600">random</code> com seed de sistema operacional do Python, equivalente ao módulo <code class="font-mono bg-slate-100 px-1 rounded text-slate-600">secrets</code>, garantindo entropia real e imprevisível.</p>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Geração criptograficamente segura') }}</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Utilizamos o módulo random com seed de sistema operacional do Python, equivalente ao módulo secrets, garantindo entropia real e imprevisível.') }}</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Dicas de segurança -->
-  <section aria-labelledby="dicas-seguranca">
-    <h2 id="dicas-seguranca" class="text-xl font-bold text-slate-800 mb-6 text-center">Dicas para criar senhas seguras</h2>
+  <section>
+    <h2 class="text-xl font-bold text-slate-800 mb-6 text-center">{{ _('Dicas para criar senhas seguras') }}</h2>
     <div class="card rounded-2xl divide-y divide-slate-100">
       <div class="flex items-start gap-4 p-5">
         <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">01</span>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">Use pelo menos 12 caracteres</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Cada caractere adicional multiplica exponencialmente o tempo necessário para quebrar a senha por força bruta. Para contas importantes, prefira 16 ou mais.</p>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Use pelo menos 12 caracteres') }}</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Cada caractere adicional multiplica exponencialmente o tempo necessário para quebrar a senha por força bruta. Para contas importantes, prefira 16 ou mais.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
         <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">02</span>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">Nunca reutilize senhas</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Se um serviço vazar seus dados, todas as contas que usam a mesma senha ficam expostas. Use uma senha única e diferente para cada serviço ou site.</p>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Nunca reutilize senhas') }}</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Se um serviço vazar seus dados, todas as contas que usam a mesma senha ficam expostas. Use uma senha única e diferente para cada serviço ou site.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
         <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">03</span>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">Use um gerenciador de senhas</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Ferramentas como Bitwarden, 1Password ou KeePass armazenam e preenchem suas senhas automaticamente com segurança, sem que você precise memorizá-las.</p>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Use um gerenciador de senhas') }}</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Ferramentas como Bitwarden, 1Password ou KeePass armazenam e preenchem suas senhas automaticamente com segurança, sem que você precise memorizá-las.') }}</p>
         </div>
       </div>
       <div class="flex items-start gap-4 p-5">
         <span class="text-indigo-400 font-bold font-mono text-sm flex-shrink-0 w-6 pt-0.5">04</span>
         <div>
-          <h3 class="font-semibold text-slate-700 text-sm mb-1">Ative a autenticação em dois fatores (2FA)</h3>
-          <p class="text-xs text-slate-500 leading-relaxed">Mesmo que sua senha seja descoberta, o 2FA impede o acesso sem o segundo fator — geralmente um código temporário gerado no celular ou por e-mail.</p>
+          <h3 class="font-semibold text-slate-700 text-sm mb-1">{{ _('Ative a autenticação em dois fatores (2FA)') }}</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">{{ _('Mesmo que sua senha seja descoberta, o 2FA impede o acesso sem o segundo fator — geralmente um código temporário gerado no celular ou por e-mail.') }}</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section aria-labelledby="faq">
-    <h2 id="faq" class="text-xl font-bold text-slate-800 mb-6 text-center">Perguntas Frequentes</h2>
+  <section>
+    <h2 class="text-xl font-bold text-slate-800 mb-6 text-center">{{ _('Perguntas Frequentes') }}</h2>
     <div class="space-y-3">
 
       <details class="card rounded-2xl group">
         <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
-          O OxePass armazena ou registra minhas senhas?
+          {{ _('O OxePass armazena ou registra minhas senhas?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">Não. As senhas são geradas no servidor no momento do clique e descartadas imediatamente após o envio ao navegador. Não existem logs, banco de dados ou qualquer forma de armazenamento.</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('Não. As senhas são geradas no servidor no momento do clique e descartadas imediatamente após o envio ao navegador. Não existem logs, banco de dados ou qualquer forma de armazenamento.') }}</p>
       </details>
 
       <details class="card rounded-2xl group">
         <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
-          Qual o tamanho mínimo recomendado para uma senha forte?
+          {{ _('Qual o tamanho mínimo recomendado para uma senha forte?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">O mínimo recomendado é 12 caracteres. Para contas importantes — como e-mail, banco ou gerenciador de senhas — use 16 caracteres ou mais, combinando letras maiúsculas, minúsculas, números e símbolos.</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('O mínimo recomendado é 12 caracteres. Para contas importantes — como e-mail, banco ou gerenciador de senhas — use 16 caracteres ou mais, combinando letras maiúsculas, minúsculas, números e símbolos.') }}</p>
       </details>
 
       <details class="card rounded-2xl group">
         <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
-          O que são caracteres ambíguos e por que evitá-los?
+          {{ _('O que são caracteres ambíguos e por que evitá-los?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">Caracteres ambíguos são aqueles visualmente parecidos, como o número <code class="font-mono bg-slate-100 px-1 rounded">0</code> e a letra <code class="font-mono bg-slate-100 px-1 rounded">O</code>, ou o número <code class="font-mono bg-slate-100 px-1 rounded">1</code> com as letras <code class="font-mono bg-slate-100 px-1 rounded">l</code> e <code class="font-mono bg-slate-100 px-1 rounded">I</code>. Evitá-los reduz erros ao digitar a senha manualmente, como em redes Wi-Fi ou dispositivos sem teclado virtual.</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('Caracteres ambíguos são aqueles visualmente parecidos, como o número 0 e a letra O, ou o número 1 com as letras l e I. Evitá-los reduz erros ao digitar a senha manualmente, como em redes Wi-Fi ou dispositivos sem teclado virtual.') }}</p>
       </details>
 
       <details class="card rounded-2xl group">
         <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
-          Qual a diferença entre senha forte e senha memorizável?
+          {{ _('Qual a diferença entre senha forte e senha memorizável?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">Uma senha forte prioriza máxima entropia com caracteres aleatórios — ideal para contas críticas armazenadas em gerenciadores. Uma senha memorizável combina três palavras em português com um número e separador, sendo segura o suficiente e possível de lembrar sem anotações.</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('Uma senha forte prioriza máxima entropia com caracteres aleatórios — ideal para contas críticas armazenadas em gerenciadores. Uma senha memorizável combina três palavras em português com um número e separador, sendo segura o suficiente e possível de lembrar sem anotações.') }}</p>
       </details>
 
       <details class="card rounded-2xl group">
         <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
-          Por que não devo usar a mesma senha em sites diferentes?
+          {{ _('Por que não devo usar a mesma senha em sites diferentes?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">Em vazamentos de dados — que ocorrem com frequência em serviços online — as senhas expostas são testadas automaticamente em outros sites. Se você reutilizar a mesma senha, uma única brecha compromete todas as suas contas. Use senhas únicas para cada serviço.</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('Em vazamentos de dados — que ocorrem com frequência em serviços online — as senhas expostas são testadas automaticamente em outros sites. Se você reutilizar a mesma senha, uma única brecha compromete todas as suas contas. Use senhas únicas para cada serviço.') }}</p>
       </details>
 
       <details class="card rounded-2xl group">
         <summary class="flex items-center justify-between p-5 cursor-pointer list-none font-semibold text-slate-700 text-sm">
-          Posso gerar várias senhas de uma vez?
+          {{ _('Posso gerar várias senhas de uma vez?') }}
           <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </summary>
-        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">Sim. O seletor de quantidade permite gerar 1, 3, 5 ou 10 senhas simultaneamente. Útil para criar senhas para múltiplos usuários ou serviços de uma só vez. Você também pode baixar todas em um arquivo .txt.</p>
+        <p class="px-5 pb-5 text-xs text-slate-500 leading-relaxed">{{ _('Sim. O seletor de quantidade permite gerar 1, 3, 5 ou 10 senhas simultaneamente. Útil para criar senhas para múltiplos usuários ou serviços de uma só vez. Você também pode baixar todas em um arquivo .txt.') }}</p>
       </details>
 
     </div>

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Política de Privacidad — OxePass{% endblock %}
+
+{% block main_class %}px-4 py-10 sm:py-16{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-2xl mx-auto space-y-10">
+
+  <div class="text-center">
+    <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 mb-2">Política de Privacidad</h1>
+    <p class="text-sm text-slate-400">Última actualización: marzo de 2025</p>
+  </div>
+
+  <div class="card rounded-2xl p-6 sm:p-8 space-y-8 text-sm text-slate-600 leading-relaxed">
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 text-base">1. Visión general</h2>
+      <p>OxePass es un generador de contraseñas que respeta totalmente su privacidad. Nuestra política es simple: <strong class="text-slate-700">no recopilamos, almacenamos ni compartimos ningún dato personal</strong>. Las contraseñas generadas existen solo durante el procesamiento de la solicitud y se descartan inmediatamente.</p>
+    </section>
+
+    <div class="h-px bg-slate-100"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 text-base">2. Datos que no recopilamos</h2>
+      <p>OxePass no recopila, registra ni almacena:</p>
+      <ul class="space-y-1.5 pl-4">
+        <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold flex-shrink-0">—</span> Contraseñas generadas</li>
+        <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold flex-shrink-0">—</span> Direcciones de correo electrónico o cualquier información de identificación personal</li>
+        <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold flex-shrink-0">—</span> Historial de uso o preferencias</li>
+        <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold flex-shrink-0">—</span> Cookies de rastreo o identificadores de sesión</li>
+        <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold flex-shrink-0">—</span> Datos de ubicación</li>
+      </ul>
+    </section>
+
+    <div class="h-px bg-slate-100"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 text-base">3. Registros del servidor</h2>
+      <p>Como cualquier servidor web, el servidor de OxePass puede registrar automáticamente información básica de acceso, como dirección IP, navegador utilizado y fecha y hora de la solicitud. Estos registros se utilizan exclusivamente para fines operativos y de seguridad, <strong class="text-slate-700">nunca para rastrear o identificar usuarios</strong>, y se eliminan periódicamente.</p>
+    </section>
+
+    <div class="h-px bg-slate-100"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 text-base">4. Servicios de terceros</h2>
+      <p>OxePass utiliza los siguientes servicios externos, que pueden registrar información al cargar recursos:</p>
+      <ul class="space-y-3 pl-4">
+        <li>
+          <span class="font-semibold text-slate-700">Google Fonts</span>
+          <p class="text-slate-500 text-xs mt-1">Cargamos las fuentes Inter y JetBrains Mono directamente de Google Fonts. Al acceder al sitio, su navegador realiza una solicitud a los servidores de Google para descargar las fuentes. Consulte la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-indigo-500 hover:underline">política de privacidad de Google</a>.</p>
+        </li>
+        <li>
+          <span class="font-semibold text-slate-700">Alpine.js y HTMX (CDN)</span>
+          <p class="text-slate-500 text-xs mt-1">Cargamos las bibliotecas Alpine.js (vía jsDelivr) y HTMX (vía unpkg) desde CDNs externos, lo que puede generar solicitudes a esos servidores.</p>
+        </li>
+      </ul>
+      <p class="text-xs text-slate-500">No tenemos control sobre los datos que estos terceros puedan recopilar. Recomendamos la lectura de las políticas de privacidad de cada uno.</p>
+    </section>
+
+    <div class="h-px bg-slate-100"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 text-base">5. Cookies</h2>
+      <p>OxePass <strong class="text-slate-700">no utiliza cookies</strong> propias. No hay rastreo de sesión, publicidad personalizada ni ningún mecanismo de identificación entre visitas.</p>
+    </section>
+
+    <div class="h-px bg-slate-100"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 text-base">6. Seguridad en la generación de contraseñas</h2>
+      <p>Las contraseñas se generan en el servidor utilizando algoritmos de aleatoriedad criptográficamente seguros. Todo el procesamiento ocurre en memoria y los valores se descartan inmediatamente después del envío al navegador. Ninguna contraseña se persiste en ningún medio de almacenamiento.</p>
+    </section>
+
+    <div class="h-px bg-slate-100"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 text-base">7. Menores de edad</h2>
+      <p>OxePass no está dirigido a menores de 13 años y no recopila conscientemente información de menores. Al no recopilar ningún dato personal, el servicio no representa riesgo en este sentido.</p>
+    </section>
+
+    <div class="h-px bg-slate-100"></div>
+
+    <section class="space-y-3">
+      <h2 class="font-bold text-slate-800 text-base">8. Cambios en esta política</h2>
+      <p>Nos reservamos el derecho de actualizar esta política periódicamente. Los cambios significativos se indicarán mediante la fecha de "Última actualización" en la parte superior de esta página.</p>
+    </section>
+
+  </div>
+
+  <div class="text-center">
+    <a href="/es/" class="inline-flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-700 font-medium">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      {{ _('Voltar ao gerador') }}
+    </a>
+  </div>
+
+</div>
+{% endblock %}

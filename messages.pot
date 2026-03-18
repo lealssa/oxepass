@@ -1,0 +1,565 @@
+# Translations template for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-03-18 15:24-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app/app.py:137 app/app.py:143
+msgid "Muito Fraca"
+msgstr ""
+
+#: app/app.py:138
+msgid "Fraca"
+msgstr ""
+
+#: app/app.py:139
+msgid "Moderada"
+msgstr ""
+
+#: app/app.py:140
+msgid "Forte"
+msgstr ""
+
+#: app/app.py:141
+msgid "Muito Forte"
+msgstr ""
+
+#: app/app.py:188
+msgid "senha"
+msgstr ""
+
+#: app/app.py:189
+msgid "senhas"
+msgstr ""
+
+#: app/app.py:190
+msgid "Gerar"
+msgstr ""
+
+#: app/app.py:191
+msgid "Gerar Senha"
+msgstr ""
+
+#: app/app.py:192
+msgid "Gerar Senha Memorizável"
+msgstr ""
+
+#: app/app.py:193
+msgid "Gerar Código de Backup"
+msgstr ""
+
+#: app/app.py:194 app/templates/partials/password_result.html:6
+msgid "senhas geradas"
+msgstr ""
+
+#: app/app.py:195 app/templates/partials/password_result.html:6
+msgid "Sua senha gerada"
+msgstr ""
+
+#: app/app.py:197
+msgid "Pessoal"
+msgstr ""
+
+#: app/app.py:197
+msgid "uso diário"
+msgstr ""
+
+#: app/app.py:198
+msgid "Wi-Fi"
+msgstr ""
+
+#: app/app.py:198
+msgid "redes domésticas"
+msgstr ""
+
+#: app/app.py:199
+msgid "Memorizável"
+msgstr ""
+
+#: app/app.py:199 app/templates/index.html:396
+msgid "fácil de lembrar"
+msgstr ""
+
+#: app/app.py:200
+msgid "PIN"
+msgstr ""
+
+#: app/app.py:200
+msgid "desbloqueio"
+msgstr ""
+
+#: app/app.py:201
+msgid "Sênior"
+msgstr ""
+
+#: app/app.py:201
+msgid "fácil de ler"
+msgstr ""
+
+#: app/app.py:202
+msgid "Backup"
+msgstr ""
+
+#: app/app.py:202
+msgid "recuperação"
+msgstr ""
+
+#: app/app.py:203
+msgid "Corporativo"
+msgstr ""
+
+#: app/app.py:203
+msgid "política de TI"
+msgstr ""
+
+#: app/app.py:204
+msgid "Master"
+msgstr ""
+
+#: app/app.py:204
+msgid "cofre de senhas"
+msgstr ""
+
+#: app/app.py:205
+msgid "Legado"
+msgstr ""
+
+#: app/app.py:205
+msgid "sistemas antigos"
+msgstr ""
+
+#: app/app.py:206
+msgid "API Key"
+msgstr ""
+
+#: app/app.py:206
+msgid "integrações"
+msgstr ""
+
+#: app/app.py:207
+msgid "Token"
+msgstr ""
+
+#: app/app.py:207
+msgid "acesso a APIs"
+msgstr ""
+
+#: app/app.py:208
+msgid "Shell-safe"
+msgstr ""
+
+#: app/app.py:208
+msgid "terminais bash"
+msgstr ""
+
+#: app/app.py:209
+msgid "URL-safe"
+msgstr ""
+
+#: app/app.py:209
+msgid "configs e variáveis"
+msgstr ""
+
+#: app/templates/base.html:7 app/templates/base.html:23
+#: app/templates/base.html:30
+msgid "Gerador de Senhas Seguras"
+msgstr ""
+
+#: app/templates/base.html:10
+msgid ""
+"Gerador de senhas seguras online e gratuito. Crie senhas fortes, "
+"memoráveis, para Wi-Fi, PIN, API e muito mais. Suas senhas são geradas "
+"localmente e nunca saem do servidor."
+msgstr ""
+
+#: app/templates/base.html:24
+msgid ""
+"Gere senhas fortes e seguras gratuitamente. Perfis para Wi-Fi, PIN, "
+"corporativo, memorizável e muito mais."
+msgstr ""
+
+#: app/templates/base.html:31
+msgid ""
+"Gere senhas fortes e seguras gratuitamente. Suas senhas nunca saem do "
+"servidor."
+msgstr ""
+
+#: app/templates/base.html:97
+msgid "Gerado localmente — suas senhas nunca saem do servidor."
+msgstr ""
+
+#: app/templates/base.html:99
+msgid "Política de Privacidade"
+msgstr ""
+
+#: app/templates/base.html:101
+msgid "Termos de Uso"
+msgstr ""
+
+#: app/templates/index.html:3
+msgid "Gerador de Senhas Seguras e Gratuito"
+msgstr ""
+
+#: app/templates/index.html:12
+msgid ""
+"Gerador de senhas seguras e gratuito com 13 perfis prontos: Wi-Fi, PIN, "
+"corporativo, memorizável, shell-safe e mais. Senhas geradas localmente, "
+"sem armazenamento."
+msgstr ""
+
+#: app/templates/index.html:26 app/templates/index.html:599
+msgid "O OxePass armazena ou registra minhas senhas?"
+msgstr ""
+
+#: app/templates/index.html:27 app/templates/index.html:604
+msgid ""
+"Não. As senhas são geradas no servidor no momento do clique e descartadas"
+" imediatamente após o envio ao navegador. Não existem logs, banco de "
+"dados ou qualquer forma de armazenamento."
+msgstr ""
+
+#: app/templates/index.html:31 app/templates/index.html:609
+msgid "Qual o tamanho mínimo recomendado para uma senha forte?"
+msgstr ""
+
+#: app/templates/index.html:32
+msgid ""
+"O mínimo recomendado é 12 caracteres. Para contas importantes use 16 "
+"caracteres ou mais, combinando letras maiúsculas, minúsculas, números e "
+"símbolos."
+msgstr ""
+
+#: app/templates/index.html:36 app/templates/index.html:619
+msgid "O que são caracteres ambíguos e por que evitá-los?"
+msgstr ""
+
+#: app/templates/index.html:37
+msgid ""
+"Caracteres ambíguos são visualmente parecidos, como o número 0 e a letra "
+"O, ou o número 1 com as letras l e I. Evitá-los reduz erros ao digitar "
+"manualmente, como em redes Wi-Fi."
+msgstr ""
+
+#: app/templates/index.html:41 app/templates/index.html:629
+msgid "Qual a diferença entre senha forte e senha memorizável?"
+msgstr ""
+
+#: app/templates/index.html:42
+msgid ""
+"Uma senha forte prioriza máxima entropia com caracteres aleatórios. Uma "
+"senha memorizável combina três palavras em português com um número e "
+"separador, sendo segura e possível de lembrar sem anotações."
+msgstr ""
+
+#: app/templates/index.html:46 app/templates/index.html:639
+msgid "Por que não devo usar a mesma senha em sites diferentes?"
+msgstr ""
+
+#: app/templates/index.html:47
+msgid ""
+"Em vazamentos de dados, as senhas expostas são testadas automaticamente "
+"em outros sites. Se você reutilizar a mesma senha, uma única brecha "
+"compromete todas as suas contas."
+msgstr ""
+
+#: app/templates/index.html:51 app/templates/index.html:649
+msgid "Posso gerar várias senhas de uma vez?"
+msgstr ""
+
+#: app/templates/index.html:52
+msgid ""
+"Sim. O seletor de quantidade permite gerar 1, 3, 5 ou 10 senhas "
+"simultaneamente. Você também pode baixar todas em um arquivo .txt."
+msgstr ""
+
+#: app/templates/index.html:130
+msgid "Gerador de Senhas"
+msgstr ""
+
+#: app/templates/index.html:131
+msgid "Seguras e Gratuito"
+msgstr ""
+
+#: app/templates/index.html:133
+msgid ""
+"Crie senhas fortes para Wi-Fi, PIN, redes sociais, trabalho e muito mais "
+"— tudo gerado localmente, sem armazenar nada."
+msgstr ""
+
+#: app/templates/index.html:138
+msgid "Perfis rápidos"
+msgstr ""
+
+#: app/templates/index.html:250
+msgid "Tamanho da Senha"
+msgstr ""
+
+#: app/templates/index.html:272
+msgid "Complexidade"
+msgstr ""
+
+#: app/templates/index.html:284 app/templates/partials/password_result.html:142
+msgid "Maiúsculas"
+msgstr ""
+
+#: app/templates/index.html:306 app/templates/partials/password_result.html:148
+msgid "Minúsculas"
+msgstr ""
+
+#: app/templates/index.html:328 app/templates/partials/password_result.html:154
+msgid "Números"
+msgstr ""
+
+#: app/templates/index.html:350 app/templates/partials/password_result.html:160
+msgid "Símbolos"
+msgstr ""
+
+#: app/templates/index.html:368
+msgid "Excluir Caracteres"
+msgstr ""
+
+#: app/templates/index.html:394
+msgid "Senha Memorizável"
+msgstr ""
+
+#: app/templates/index.html:396
+msgid "3 palavras em português + número —"
+msgstr ""
+
+#: app/templates/index.html:396
+msgid ", difícil de adivinhar."
+msgstr ""
+
+#: app/templates/index.html:411
+msgid "Código de Backup"
+msgstr ""
+
+#: app/templates/index.html:413
+msgid "Código numérico de"
+msgstr ""
+
+#: app/templates/index.html:413
+msgid "8 dígitos"
+msgstr ""
+
+#: app/templates/index.html:413
+msgid "para recuperação de conta, no formato"
+msgstr ""
+
+#: app/templates/index.html:423
+msgid "Quantidade de senhas"
+msgstr ""
+
+#: app/templates/index.html:479
+msgid "Como funciona o OxePass"
+msgstr ""
+
+#: app/templates/index.html:488
+msgid "1. Escolha um perfil"
+msgstr ""
+
+#: app/templates/index.html:489
+msgid ""
+"Selecione entre 13 perfis prontos — pessoal, Wi-Fi, corporativo, "
+"memorizável e mais — ou configure manualmente o comprimento, complexidade"
+" e caracteres a evitar."
+msgstr ""
+
+#: app/templates/index.html:499
+msgid "2. Gere com um clique"
+msgstr ""
+
+#: app/templates/index.html:500
+msgid ""
+"Clique em \"Gerar Senha\" e a senha é criada instantaneamente no servidor"
+" usando geração aleatória criptograficamente segura. Você pode gerar até "
+"10 senhas de uma vez."
+msgstr ""
+
+#: app/templates/index.html:510
+msgid "3. Copie com segurança"
+msgstr ""
+
+#: app/templates/index.html:511
+msgid ""
+"Copie a senha com um clique ou baixe todas em um arquivo .txt. A senha "
+"nunca é salva, registrada ou transmitida para terceiros."
+msgstr ""
+
+#: app/templates/index.html:519
+msgid "Por que o OxePass é seguro"
+msgstr ""
+
+#: app/templates/index.html:528
+msgid "Sem armazenamento"
+msgstr ""
+
+#: app/templates/index.html:529
+msgid ""
+"As senhas são geradas no momento do clique e descartadas imediatamente "
+"após o envio ao navegador. Não há banco de dados, logs ou histórico de "
+"senhas geradas."
+msgstr ""
+
+#: app/templates/index.html:539
+msgid "Sem rastreamento"
+msgstr ""
+
+#: app/templates/index.html:540
+msgid ""
+"Não usamos cookies de rastreamento, scripts de anúncios ou ferramentas de"
+" analytics que coletam dados pessoais. Sua privacidade é prioridade "
+"absoluta."
+msgstr ""
+
+#: app/templates/index.html:550
+msgid "Geração criptograficamente segura"
+msgstr ""
+
+#: app/templates/index.html:551
+msgid ""
+"Utilizamos o módulo random com seed de sistema operacional do Python, "
+"equivalente ao módulo secrets, garantindo entropia real e imprevisível."
+msgstr ""
+
+#: app/templates/index.html:559
+msgid "Dicas para criar senhas seguras"
+msgstr ""
+
+#: app/templates/index.html:564
+msgid "Use pelo menos 12 caracteres"
+msgstr ""
+
+#: app/templates/index.html:565
+msgid ""
+"Cada caractere adicional multiplica exponencialmente o tempo necessário "
+"para quebrar a senha por força bruta. Para contas importantes, prefira 16"
+" ou mais."
+msgstr ""
+
+#: app/templates/index.html:571
+msgid "Nunca reutilize senhas"
+msgstr ""
+
+#: app/templates/index.html:572
+msgid ""
+"Se um serviço vazar seus dados, todas as contas que usam a mesma senha "
+"ficam expostas. Use uma senha única e diferente para cada serviço ou "
+"site."
+msgstr ""
+
+#: app/templates/index.html:578
+msgid "Use um gerenciador de senhas"
+msgstr ""
+
+#: app/templates/index.html:579
+msgid ""
+"Ferramentas como Bitwarden, 1Password ou KeePass armazenam e preenchem "
+"suas senhas automaticamente com segurança, sem que você precise "
+"memorizá-las."
+msgstr ""
+
+#: app/templates/index.html:585
+msgid "Ative a autenticação em dois fatores (2FA)"
+msgstr ""
+
+#: app/templates/index.html:586
+msgid ""
+"Mesmo que sua senha seja descoberta, o 2FA impede o acesso sem o segundo "
+"fator — geralmente um código temporário gerado no celular ou por e-mail."
+msgstr ""
+
+#: app/templates/index.html:594
+msgid "Perguntas Frequentes"
+msgstr ""
+
+#: app/templates/index.html:614
+msgid ""
+"O mínimo recomendado é 12 caracteres. Para contas importantes — como "
+"e-mail, banco ou gerenciador de senhas — use 16 caracteres ou mais, "
+"combinando letras maiúsculas, minúsculas, números e símbolos."
+msgstr ""
+
+#: app/templates/index.html:624
+msgid ""
+"Caracteres ambíguos são aqueles visualmente parecidos, como o número 0 e "
+"a letra O, ou o número 1 com as letras l e I. Evitá-los reduz erros ao "
+"digitar a senha manualmente, como em redes Wi-Fi ou dispositivos sem "
+"teclado virtual."
+msgstr ""
+
+#: app/templates/index.html:634
+msgid ""
+"Uma senha forte prioriza máxima entropia com caracteres aleatórios — "
+"ideal para contas críticas armazenadas em gerenciadores. Uma senha "
+"memorizável combina três palavras em português com um número e separador,"
+" sendo segura o suficiente e possível de lembrar sem anotações."
+msgstr ""
+
+#: app/templates/index.html:644
+msgid ""
+"Em vazamentos de dados — que ocorrem com frequência em serviços online — "
+"as senhas expostas são testadas automaticamente em outros sites. Se você "
+"reutilizar a mesma senha, uma única brecha compromete todas as suas "
+"contas. Use senhas únicas para cada serviço."
+msgstr ""
+
+#: app/templates/index.html:654
+msgid ""
+"Sim. O seletor de quantidade permite gerar 1, 3, 5 ou 10 senhas "
+"simultaneamente. Útil para criar senhas para múltiplos usuários ou "
+"serviços de uma só vez. Você também pode baixar todas em um arquivo .txt."
+msgstr ""
+
+#: app/templates/privacy.html:96 app/templates/privacy_en.html:96
+#: app/templates/privacy_es.html:96 app/templates/terms.html:110
+#: app/templates/terms_en.html:110 app/templates/terms_es.html:110
+msgid "Voltar ao gerador"
+msgstr ""
+
+#: app/templates/partials/password_result.html:21
+msgid "Baixar .txt"
+msgstr ""
+
+#: app/templates/partials/password_result.html:40
+msgid "Copiar"
+msgstr ""
+
+#: app/templates/partials/password_result.html:99
+msgid "Copiado para a área de transferência!"
+msgstr ""
+
+#: app/templates/partials/password_result.html:106
+msgid "Força da senha"
+msgstr ""
+
+#: app/templates/partials/password_result.html:127
+msgid "Fácil de memorizar"
+msgstr ""
+
+#: app/templates/partials/password_result.html:131
+msgid "3 palavras + número"
+msgstr ""
+
+#: app/templates/partials/password_result.html:136
+msgid "8 dígitos · formato XXXX XXXX"
+msgstr ""
+
+#: app/templates/partials/password_result.html:166
+#: app/templates/partials/password_result.html:172
+msgid "sem caracteres ambíguos"
+msgstr ""
+
